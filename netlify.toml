@@ -11,6 +11,7 @@
 
 
 [context.staging]
-  command = "echo --- staging"
+  command = "npm run generate"
   NODE_ENV = "development"
+  BUILD_SOURCE = 'netlify'
   API_URL = 'https://us-central1-bnbcrate-dev.cloudfunctions.net/'

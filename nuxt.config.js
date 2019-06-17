@@ -22,6 +22,10 @@ else
   apiHeaders = { 'X-environment' : 'dev' }
 }
 
+if (process.env.BUILD_SOURCE == 'netlify')
+{
+  apiUrl = 'http://foooooooooooo:8080/'
+}
 
 require('dotenv').config({ path: envfile }); 
 
