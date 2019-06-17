@@ -1,0 +1,28 @@
+{
+  "name": "bnbcrate",
+  "version": "1.0.0",
+  "description": "bnbcrate website",
+  "author": "sqram",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "deploy-client-dev": "npm run generate && gcloud config set project tabbit-1313 && gsutil  cp -r dist/* gs://bnbcrate-dev.appspot.com"
+  },
+  "dependencies": {    
+    "@nuxtjs/axios": "^5.5.3",
+    "@nuxtjs/vuetify": "^0.5.5",     
+    "nuxt": "^2.8.1",
+    "validator": "^11.0.0",
+    "vuetify-loader": "^1.2.1",
+    "vuex-persistedstate": "^2.5.4"
+  },
+  "devDependencies": {
+    "dotenv": "^7.0.0",
+    "nodemon": "^1.18.9",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2"
+  }
+}
