@@ -8,7 +8,6 @@ var envfile
 
 
 
-
 // Define variables based on environment
 if (process.env.NODE_ENV == 'production')
 {
