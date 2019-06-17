@@ -48,9 +48,7 @@ const getters = {
    * with the price of the product in `crates` module
    */
   cartTotal (state, getters, rootState, rootGetters) {     
-    let crates = rootState.products.crates    
-    console.log('---')
-    console.log(crates)
+    let crates = rootState.products.crates        
     if (!state.items.length || !crates.length) {
       
       // Total is 0 if there are no items in cart or products isn't done being fetched

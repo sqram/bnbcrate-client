@@ -19,7 +19,7 @@ const actions = {
    */
   async getCrates ({ commit })
   {    
-    let products = await this.$axios.$get('/cart/products')
+    let products = await this.$axios.$get('/getProducts')
     products = products.products
     if (Array.isArray(products))
     {
