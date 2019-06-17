@@ -6,7 +6,7 @@ var envfile
   , apiUrl
   , apiHeaders
 
-// From netlify.toml
+
 
 
 // Define variables based on environment
