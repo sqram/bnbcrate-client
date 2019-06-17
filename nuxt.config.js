@@ -28,7 +28,6 @@ require('dotenv').config({ path: envfile });
 
 
 
-
 module.exports = {
   // Allows us to use .env variables in the client
   env: {
