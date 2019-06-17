@@ -22,9 +22,11 @@ else
   apiHeaders = { 'X-environment' : 'dev' }
 }
 
+// If netlify is building this, and BUILD_SOURCE is 'netlify',
+// always use dev endpoint
 if (process.env.BUILD_SOURCE == 'netlify')
 {
-  apiUrl = 'http://foooooooooooo:8080/'
+  apiUrl = 'https://us-central1-bnbcrate-dev.cloudfunctions.net/'
 }
 
 require('dotenv').config({ path: envfile }); 
