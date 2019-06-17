@@ -7,7 +7,8 @@ var envfile
   , apiHeaders
 
 // From netlify.toml
-of (process.env.)
+
+
 // Define variables based on environment
 if (process.env.NODE_ENV == 'production')
 {
