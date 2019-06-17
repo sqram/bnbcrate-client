@@ -1,0 +1,14 @@
+#[context.deploy-preview.environment]
+#  API_URL = 'https://us-central1-bnbcrate-dev.cloudfunctions.net/'
+
+#[context.branch-deploy]
+#  command = "echo branch"
+  
+#[context.branch-deploy.environment]
+#  NODE_ENV = "development"
+#  API_URL = 'https://us-central1-bnbcrate-dev.cloudfunctions.net/'
+
+[context.staging]
+  command = "echo --- staging"
+  NODE_ENV = "development"
+  API_URL = 'https://us-central1-bnbcrate-dev.cloudfunctions.net/'
