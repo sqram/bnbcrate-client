@@ -6,7 +6,6 @@ var envfile
   , apiHeaders
 
 
-
 // Define variables based on environment
 if (process.env.NODE_ENV == 'production')
 {
@@ -32,6 +31,12 @@ if (process.env.BUILD_SOURCE == 'netlify')
 }
 
 require('dotenv').config({ path: envfile }); 
+
+console.log('---------------')
+console.log(envfile)
+console.log(process.env.STRIPE_PUBLIC_KEY)
+
+
 
 
 
