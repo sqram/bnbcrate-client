@@ -34,7 +34,7 @@ require('dotenv').config({ path: envfile });
 
 console.log('---------------')
 console.log(envfile)
-console.log(process.env.STRIPE_PUBLIC_KEY)
+console.log(process.env)
 
 
 
