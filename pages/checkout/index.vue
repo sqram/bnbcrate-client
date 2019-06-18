@@ -907,7 +907,7 @@ export default {
       .then( response => {
         if (response.data.result)
         {
-          //this.$router.replace('/checkout/complete')
+          this.$router.replace('/checkout/complete')
           if (this.saveAddress)
           {
             this._saveAddress()

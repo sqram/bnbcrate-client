@@ -11,9 +11,9 @@
     "generate": "nuxt generate",
     "deploy-client-dev": "npm run generate && gcloud config set project tabbit-1313 && gsutil  cp -r dist/* gs://bnbcrate-dev.appspot.com"
   },
-  "dependencies": {    
+  "dependencies": {
     "@nuxtjs/axios": "^5.5.3",
-    "@nuxtjs/vuetify": "^0.5.5",     
+    "@nuxtjs/vuetify": "^0.5.6",
     "nuxt": "^2.8.1",
     "validator": "^11.0.0",
     "vuetify-loader": "^1.2.1",
