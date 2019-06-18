@@ -10,14 +10,17 @@ var envfile
 // Define variables based on environment
 if (process.env.NODE_ENV == 'production')
 {
+  // .env file not used in prod - was used when this was in appengine
   envfile = '.env.prod'
-  apiUrl = 'https://us-central1-bnbcrate1.cloudfunctions.net/'
+  apiUrl = 'https://us-central1-bnbcrate1.cloudfunctions.net/app/'
   apiHeaders = { 'X-environment' : 'prod' }
 }
 else
 {
+  // this env file still used for dev
   envfile = '.env.dev'
   apiUrl = 'http://localhost:8080/'
+  //apiUrl = 'https://us-central1-bnbcrate-dev.cloudfunctions.net/app/'
   apiHeaders = { 'X-environment' : 'dev' }
 }
 
@@ -25,7 +28,7 @@ else
 // always use dev endpoint
 if (process.env.BUILD_SOURCE == 'netlify')
 {
-  apiUrl = 'https://us-central1-bnbcrate-dev.cloudfunctions.net/'
+  apiUrl = 'https://us-central1-bnbcrate-dev.cloudfunctions.net/app/'
 }
 
 require('dotenv').config({ path: envfile }); 
@@ -79,8 +82,8 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    // Axios plugins sets header. currently not needed - was needed for GCFunctions
-    //{ src: '~/plugins/axios.js'}
+    // Axios plugins sets header
+    { src: '~/plugins/axios.js'},
     { src: '~/plugins/localStorage.js', ssr: false }
   ],
 

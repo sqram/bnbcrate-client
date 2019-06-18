@@ -1,5 +1,8 @@
 <template>
-  <div class="loading"></div>
+  <div class="loading">
+    <div class="loading-circle"></div>
+    <h3>Fetching products...</h3>
+  </div>
 </template>
 
 <script>
@@ -8,8 +11,8 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
-.loading {
+<style lang="stylus" >
+.loading-circle {
     margin: 0 auto;
     border-radius: 50%;
     width: 150px
@@ -18,6 +21,14 @@ export default {
     border-top-color: #389AB9;
     animation: spins 1s infinite linear;
 
+  }
+
+  .loading h3 {
+    text-align: center;
+    display: block;
+    font-size: 2em;
+    font-weight: lighter;
+    margin-top: 1em;
   }
 
 

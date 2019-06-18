@@ -1,7 +1,7 @@
 <template>
     
   <div>
-    <v-container grid-list-xl>
+    <v-container grid-list-xl v-if='$store.state.products.crates.length'>
       <header>
         <h3 class="display-1" >Select Your Crates</h3>
         <p>
@@ -13,7 +13,7 @@
       <v-layout row wrap>
         
         <!-- Left side - Crate Selection -->
-        <v-flex xs12 sm8 md8 lg6 offset-lg1 v-if='$store.state.products.crates.length'>
+        <v-flex xs12 sm8 md8 lg6 offset-lg1 >
           <v-layout row wrap>
       
             <v-flex d-flex xs12 v-for="crate in $store.state.products.crates" :key='crate.name'>
@@ -50,9 +50,7 @@
           </v-layout>
         </v-flex>
         
-        <v-flex xs12 sm8 md8 lg6 offset-lg1 v-else>
-          fetching products
-        </v-flex>
+        
 
         <!-- Right side -->
         <v-flex xs12 sm4  md4 lg4>
@@ -98,18 +96,24 @@
       </v-layout>
     </v-container>
 
+    <v-container v-else>
+      <Loading />
+    </v-container>
+
   </div>
 </template>
 
 <script>
 
 import NumberInput from '~/components/NumberInput'
+import Loading from '~/components/Loading'
 
 
 export default {
   layout: 'default',
   components: {
-    NumberInput
+    NumberInput,
+    Loading
   },
 
   async beforeMount () {    
@@ -119,7 +123,8 @@ export default {
 </script>
 
 <style lang='stylus'>
-    
+   .loading
+      margin-top 6em !important
   .container.order-form
     margin-top 5em
 
