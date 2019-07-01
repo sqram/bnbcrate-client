@@ -9,7 +9,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "deploy-client-dev": "npm run generate && gcloud config set project tabbit-1313 && gsutil  cp -r dist/* gs://bnbcrate-dev.appspot.com"
+    "deploy-client-dev": "npm run generate && gcloud config set project bnbcrate-dev && gsutil  cp -r dist/* gs://bnbcrate-dev.appspot.com"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.5.3",
