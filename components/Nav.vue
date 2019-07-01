@@ -35,9 +35,9 @@
 
       <v-list>
         <!-- About -->
-        <v-list-tile to="/about">
+        <v-list-tile to="/about" @click='drawer = false'>
           <v-list-tile-action>
-            <v-icon>person</v-icon>
+            <v-icon>announcement</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title>About</v-list-tile-title>
@@ -45,9 +45,9 @@
         </v-list-tile>
 
         <!-- FAQs -->
-        <v-list-tile to="/faq">
+        <v-list-tile to="/faq" @click='drawer = false'>
           <v-list-tile-action>
-            <v-icon>person</v-icon>
+            <v-icon>help_outline</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title>FAQs</v-list-tile-title>
@@ -55,9 +55,9 @@
         </v-list-tile>
 
         <!-- Contact -->
-        <v-list-tile to="/contact">
+        <v-list-tile to="/contact" @click='drawer = false'>
           <v-list-tile-action>
-            <v-icon>person</v-icon>
+            <v-icon>mail_outline</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title>Contact</v-list-tile-title>
@@ -86,7 +86,7 @@
         <v-btn flat  to='/faq'>FAQs</v-btn>
       </div>
 
-      <!--
+      
       <div class="hidden-xs-only">
         <div  v-if="$store.state.user.jwt">
           <v-btn flat to='/dashboard'>My Dashboard</v-btn>          
@@ -96,7 +96,7 @@
           <v-btn flat @click.native.stop="showDialog('register')">Register</v-btn>
         </div>
       </div>
-      -->
+      
       
       <v-btn to='/crates' class='accent ship'>SHIP A CRATE</v-btn>    
   

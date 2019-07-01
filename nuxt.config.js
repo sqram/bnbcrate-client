@@ -10,14 +10,14 @@ var envfile
 if (process.env.NODE_ENV == 'production')
 {
   // .env file not used in prod - was used when this was in appengine
-  envfile = '.env.prod'
+  //envfile = '.env.prod'
   apiUrl = 'https://us-central1-bnbcrate1.cloudfunctions.net/app/'
   apiHeaders = { 'X-environment' : 'prod' }
 }
 else
 {
   // this env file still used for dev
-  envfile = '.env.dev'
+  //envfile = '.env.dev'
   apiUrl = 'http://localhost:8080/'
   //apiUrl = 'https://us-central1-bnbcrate-dev.cloudfunctions.net/app/'
   apiHeaders = { 'X-environment' : 'dev' }
@@ -33,8 +33,7 @@ if (process.env.BUILD_SOURCE == 'netlify')
 require('dotenv').config({ path: envfile }); 
 
 console.log('---------------')
-console.log(envfile)
-console.log(process.env)
+console.log(process.env.NODE_ENV)
 
 
 

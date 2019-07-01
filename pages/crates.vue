@@ -18,6 +18,9 @@
       
             <v-flex d-flex xs12 v-for="crate in $store.state.products.crates" :key='crate.name'>
               <v-card>
+                <v-img src='https://www.quickenloans.com/blog/wp-content/uploads/2019/05/iStock-177303239.jpg'>
+
+                </v-img>
                 <v-layout class="crate-selection">
 
                   <!-- count -->
@@ -54,18 +57,30 @@
 
         <!-- Right side -->
         <v-flex xs12 sm4  md4 lg4>
-          <v-card class="green lighten-2" dark>
+          <v-card class="grey lighten-2" dark>
             <v-card-text>
               <div class="order-summary">           
                 <div class="price">
                   <span class="currency">$</span>{{ $store.getters['cart/cartTotal'] }}
                 </div>
-                 <v-btn block large to="/checkout" :disabled="$store.getters['cart/cartTotal'] == 0" class="blue">OK, SHIP!</v-btn>
-                 <div style="text-align:center">
-                 <v-card-text>
-                   (Shipping is <b>FREE</b>)
-                   </v-card-text>
-                 </div>
+
+                 <v-btn 
+                  color='primary'  
+                  light
+                  
+                  depressed
+                  block
+                  large 
+                  to="/checkout" 
+                  :disabled="$store.getters['cart/cartTotal'] == 0">
+                    OK, SHIP!
+                  </v-btn>
+
+                 
+                 <v-card-text class="text-sm-center">
+                  ( Shipping is <b>FREE</b> )
+                </v-card-text>
+                 
               </div>
               
               <!--
@@ -116,7 +131,8 @@ export default {
     Loading
   },
 
-  async beforeMount () {    
+  async beforeMount ()
+  {    
     this.$store.dispatch('products/getCrates')       
   }  
 }
@@ -156,10 +172,12 @@ export default {
       font-size 24px
     
   .order-summary
-    background rgba(228, 227, 227, 0.2)
+    //background rgba(228, 227, 227, 0.2)
+    background lighten(#fff, .63)
     padding 2em
     border-radius 10px
-    color #fff
+    color #666
+    //color #fff
     .price
       font-size 4em
       text-align center
@@ -177,37 +195,37 @@ export default {
         .currency
           font-size 50%
       
-  .premium
-      margin-top 1em
-      position relative
-      p
-        padding 9px 0
-        color #ccc
-      div.corner
-        width 20px
-        height 20px
-        position absolute
-        border-width 3px
-        border-color gold
-        border-style solid
-        &.topleft
-          top 0
-          left 0
-          border-right none
-          border-bottom none
-        &.topright
-          top 0
-          right 0
-          border-left none
-          border-bottom none
-        &.bottomright
-          bottom 0
-          right 0
-          border-left none
-          border-top none
-        &.bottomleft
-          bottom 0
-          left 0
-          border-right none
-          border-top none
+  // .premium
+  //     margin-top 1em
+  //     position relative
+  //     p
+  //       padding 9px 0
+  //       color #ccc
+  //     div.corner
+  //       width 20px
+  //       height 20px
+  //       position absolute
+  //       border-width 3px
+  //       border-color gold
+  //       border-style solid
+  //       &.topleft
+  //         top 0
+  //         left 0
+  //         border-right none
+  //         border-bottom none
+  //       &.topright
+  //         top 0
+  //         right 0
+  //         border-left none
+  //         border-bottom none
+  //       &.bottomright
+  //         bottom 0
+  //         right 0
+  //         border-left none
+  //         border-top none
+  //       &.bottomleft
+  //         bottom 0
+  //         left 0
+  //         border-right none
+  //         border-top none
 </style>
