@@ -16,9 +16,9 @@
             </v-card-text>
           </v-card>
 
-          <div class='img'>
-            image goes here
-          </div>
+          <v-img src='http://images.traditionalhome.mdpcdn.com/sites/traditionalhome.com/files/slide/101982719.jpg'>
+
+          </v-img>
          
           <v-card-text>
             <p>

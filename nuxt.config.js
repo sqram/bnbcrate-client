@@ -1,4 +1,3 @@
-const pkg = require('./package')
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 
 
@@ -6,25 +5,36 @@ var envfile
   , apiUrl
   , apiHeaders
 
-// From netlify.toml
-
 
 // Define variables based on environment
 if (process.env.NODE_ENV == 'production')
 {
-  envfile = '.env.prod'
-  apiUrl = 'https://us-central1-bnbcrate1.cloudfunctions.net/'
+  // .env file not used in prod - was used when this was in appengine
+  //envfile = '.env.prod'
+  apiUrl = 'https://us-central1-bnbcrate1.cloudfunctions.net/app/'
   apiHeaders = { 'X-environment' : 'prod' }
 }
 else
 {
-  envfile = '.env.dev'
+  // this env file still used for dev
+  //envfile = '.env.dev'
   apiUrl = 'http://localhost:8080/'
+  //apiUrl = 'https://us-central1-bnbcrate-dev.cloudfunctions.net/app/'
   apiHeaders = { 'X-environment' : 'dev' }
 }
 
+// If netlify is building this, and BUILD_SOURCE is 'netlify',
+// always use dev endpoint
+if (process.env.BUILD_SOURCE == 'netlify')
+{
+  apiUrl = 'https://us-central1-bnbcrate-dev.cloudfunctions.net/app/'
+}
 
 require('dotenv').config({ path: envfile }); 
+
+console.log('---------------')
+console.log(process.env.NODE_ENV)
+
 
 
 
@@ -35,18 +45,17 @@ module.exports = {
     STRIPE_PUBLIC_KEY: process.env.STRIPE_PUBLIC_KEY,    
   },
 
-
   mode: 'universal',
 
   /*
   ** Headers of the page
   */
   head: {
-    title: pkg.name,
+    title: 'bnbcrate',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { hid: 'description', name: 'description', content: 'toiletries for airbnb, vrbo, homeaway' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -77,8 +86,8 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    // Axios plugins sets header. currently not needed - was needed for GCFunctions
-    //{ src: '~/plugins/axios.js'}
+    // Axios plugins sets header
+    { src: '~/plugins/axios.js'},
     { src: '~/plugins/localStorage.js', ssr: false }
   ],
 
