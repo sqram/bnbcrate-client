@@ -1,8 +1,6 @@
 <template>
   <v-app>
-    <Nav />
-    <Dialog :content='$store.state.dialogs.content' />
-    <Nuxt />
+    soon
   </v-app>
 </template>
 

@@ -897,7 +897,7 @@ export default {
       }      
     
       this.selectedCardError = null
-      this.isSubmitting = false
+      
       
       await this.$axios({
         method: 'post',
@@ -913,6 +913,7 @@ export default {
             this._saveAddress()
           }
           this.ccSubmitError = null
+          
         }
         else
         {
@@ -944,9 +945,7 @@ export default {
           zip: this.$store.state.checkout.shipping.zip,
           state: this.$store.state.checkout.shipping.state,
           country: this.$store.state.checkout.shipping.country
-        }
-        
-        
+        }       
         
 
         let req = await axios({
