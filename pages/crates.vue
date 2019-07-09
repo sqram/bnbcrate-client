@@ -13,14 +13,39 @@
       <v-layout row wrap>
         
         <!-- Left side - Crate Selection -->
-        <v-flex xs12 sm8 md8 lg6 offset-lg1 >
+        <v-flex xs12 sm8 md8 lg6 xl4 offset-lg1 offset-xl2>
           <v-layout row wrap>
+
       
             <v-flex d-flex xs12 v-for="crate in $store.state.products.crates" :key='crate.name'>
               <v-card>
-                <v-img src='https://www.quickenloans.com/blog/wp-content/uploads/2019/05/iStock-177303239.jpg'>
+                <!-- <v-img src='https://www.quickenloans.com/blog/wp-content/uploads/2019/05/iStock-177303239.jpg'></v-img> -->
+                
+                <v-layout row wrap>
+                  <v-flex xs12>
+                    <hooper :settings="hooperSettings">
+                       <slide>                        
+                        <v-img src='/img/products/filtered/img_1563.jpeg'></v-img> 
+                      </slide>
+                      <slide>
+                        <v-img src='/img/products/filtered/img_1587.jpeg'></v-img> 
+                      </slide>
+                      <slide>
+                        <v-img src='/img/products/filtered/img_1592.jpeg'></v-img> 
+                      </slide>
+                      <slide>
+                        <v-img src='/img/products/filtered/img_1588.jpeg'></v-img> 
+                      </slide>
+                   </hooper>
+                  </v-flex>
+                </v-layout>
+                
+              
+                
 
-                </v-img>
+          
+      
+                
                 <v-layout class="crate-selection">
 
                   <!-- count -->
@@ -122,15 +147,29 @@
 
 import NumberInput from '~/components/NumberInput'
 import Loading from '~/components/Loading'
+import { Hooper, Slide, Navigation as HooperNavigation } from 'hooper'
+import 'hooper/dist/hooper.css';
+
 
 
 export default {
   layout: 'default',
   components: {
     NumberInput,
-    Loading
+    Loading,
+    Hooper,
+    Slide,
+    HooperNavigation,
+    
   },
-
+  data ()
+  {
+    return {
+      hooperSettings: {
+        vertical: true
+      }
+    }
+  },
   async beforeMount ()
   {    
     this.$store.dispatch('products/getCrates')       
@@ -139,8 +178,8 @@ export default {
 </script>
 
 <style lang='stylus'>
-   .loading
-      margin-top 6em !important
+  .loading
+    margin-top 6em !important
   .container.order-form
     margin-top 5em
 
