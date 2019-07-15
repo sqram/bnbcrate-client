@@ -3,7 +3,7 @@
   <v-container class="container about">
           
       <header>
-        <h3>Dashboard</h3>
+        <h3 class="display-1">Dashboard</h3>        
        
       </header> 
       
@@ -18,7 +18,7 @@
           </v-card>
 
           <v-card>
-            <v-btn flat block large to='/dashboard/credit-cards'>Credit Cards</v-btn>
+            <v-btn flat block large to='/dashboard/creditcards'>Credit Cards</v-btn>
           </v-card>
 
           <v-card>

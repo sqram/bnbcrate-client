@@ -120,7 +120,7 @@
     methods: {
       showDialog (content)
       {
-        this.$store.commit('dialogs/TOGGLE_DIALOG', {
+        this.$store.dispatch('dialogs/toggleDialog', {
           show: true,
           content,
         })     

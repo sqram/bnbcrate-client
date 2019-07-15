@@ -535,35 +535,43 @@ export default {
     });
 
     // Fetch user's addresses & credit cards if logged in
+    
     if (this.$store.state.user.jwt)
     {    
-      try
-      {
+      console.log('----')
+      
+        /*
         // Addresses
-        let req = await this.$axios({
-          method: 'get',
-          url: `/api/user/addresses`,
-          headers: {Authorization: `Bearer ${this.$store.state.user.jwt}`}          
-        })
+        // let req = await this.$axios({
+        //   method: 'get',
+        //   url: `/api/user/addresses`,
+        //   headers: {Authorization: `Bearer ${this.$store.state.user.jwt}`}          
+        // })
         
-        if (req.data.result == 0 && req.data.payload.code == 'NO_USER')
-        {
-          this.$store.dispatch('logout')
-        }
+        // if (req.data.result == 0 && req.data.payload.code == 'NO_USER')
+        // {
+        //   this.$store.dispatch('logout')
+        // }
         
         
-        if (req.data.payload.addresses.length)
+        // if (req.data.payload.addresses.length)
+        // {     
+        //   this.addresses = req.data.payload.addresses
+        //   this.showAddressForm = false
+        // }
+         if (this.$store.state.user.addresses.length)
         {     
-          this.addresses = req.data.payload.addresses
+          console.log'____')
+          this.addresses = this.$store.state.user.addresses
           this.showAddressForm = false
         }
+        */
 
         // Credit Card
         
-        req = await this.$axios({
+        let req = await this.$axios({
           method: 'get',
-          url: `/user/cards`,
-          headers: {Authorization: `Bearer ${this.$store.state.user.jwt}`}
+          url: `/user/cards`          
         })
         
         if (req.data.payload.cards.length)
@@ -576,13 +584,7 @@ export default {
         else
         {
           this.showCardForm = 'block'
-        }
-      }
-      catch (e)
-      {
-
-      }
-
+        }        
     }
     else
     {

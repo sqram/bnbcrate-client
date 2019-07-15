@@ -3,7 +3,7 @@
   <v-container>
           
       <header>
-        <h3>Your Order History</h3>       
+        <h3 class="display-1">Order History</h3>        
       </header> 
       
       <v-layout>

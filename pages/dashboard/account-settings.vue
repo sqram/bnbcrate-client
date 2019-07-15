@@ -12,7 +12,7 @@
 
 
     <header>
-      <h3>Account Settings</h3>       
+      <h3 class="display-1">Account Settings</h3>        
     </header> 
   
     <v-layout row wrap>
@@ -41,7 +41,7 @@
                 :error-messages='mismatchError'
                 @keyup="checkForPasswordMismatch"
                 :append-icon="hidePassword ? 'visibility_off' : 'visibility'"
-                :append-icon-cb="() => (hidePassword = !hidePassword)"              
+                @click:append="() => (hidePassword = !hidePassword)"              
               ></v-text-field>
 
               <v-text-field
@@ -53,7 +53,7 @@
                 @keyup="checkForPasswordMismatch"
                 :error-messages='mismatchError'
                 :append-icon="hidePassword ? 'visibility_off' : 'visibility'"
-                :append-icon-cb="() => (hidePassword = !hidePassword)"                                 
+                @click:append="() => (hidePassword = !hidePassword)"                                 
               ></v-text-field>        
             </v-card-text>          
             <v-card-text>
@@ -90,7 +90,7 @@
             color='primary'
             :label="`Receive updates &amp; offers via email?`" 
             hide-details
-            @change='updateEmailPreference'
+            @change='updateNewsletterSettings'
             v-model='preferences.receiveEmails'
             >
           </v-switch>
@@ -178,9 +178,9 @@ export default {
           this.isSubmitting = true
           try
           {
-            const req = await axios({
+            const req = await this.$axios({
               method: 'post',
-              url: `${window.api}/user/update-password/`,
+              url: `/user/update-password`,
               headers: {Authorization: `Bearer ${this.$store.state.user.jwt}`},
               data: { 
                 current: this.currentPassword,
@@ -205,22 +205,22 @@ export default {
       /**
        * API call to update user's email preference.
        * 
-       * @postparam {str} 
        */
 
-      updateEmailPreference ()
+      updateNewsletterSettings ()
       {    
-        this.$store.dispatch('updatePreferences', this.preferences)
-        axios({
+
+        this.$store.dispatch('user/updateNewsletterSettings', this.preferences)
+        this.$axios({
           method: 'post',
-          url: `${window.api}/user/preferences`,
+          url: `/user/newsletter-settings`,
           headers: {'Authorization': `Bearer ${this.$store.state.user.jwt}`},
-          data: {preferences: this.preferences},
+          data: { preferences: this.preferences },
         })
         .then(res => {})
         .catch(e => {          
           this.preferences.receiveEmails = !this.preferences.receiveEmails
-          this.$store.commit('UPDATE_PREFERENCES', this.preferences)
+          this.$store.commit('user/UPDATE_NEWSLETTER_SETTINGS', this.preferences)
         })        
       }
     }

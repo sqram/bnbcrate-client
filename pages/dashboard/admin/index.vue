@@ -34,7 +34,7 @@
   </v-container>
 </template>
 <script>
-import axios from 'axios'
+
 import Loading from '~/components/Loading'
 
 export default {

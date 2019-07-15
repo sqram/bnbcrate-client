@@ -60,7 +60,7 @@
         },
         set (flag)
         {
-          this.$store.dispatch('dialogs/toggleDialog', { })
+          this.$store.commit('dialogs/TOGGLE_DIALOG', { })
         }        
       },
       content: {
@@ -70,7 +70,7 @@
         },
         set (content)
         {
-          this.$store.dispatch('dialogs/toggleDialog', { content })
+          this.$store.commit('dialogs/TOGGLE_DIALOG', { content })
         }
       }
     },
@@ -87,7 +87,7 @@
 
       toggleDialog (content)
       {
-        this.$store.dispatch('dialogs/toggleDialog', { show: true, content })      
+        this.$store.commit('dialogs/TOGGLE_DIALOG', { show: true, content })      
       }      
     }
  

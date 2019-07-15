@@ -26,8 +26,8 @@
           Create Account
         </v-btn>
 
-        <v-alert color="error" icon="warning" :value='$store.state.user.errors.register'>
-          <span v-html='$store.state.user.errors.register'></span>
+        <v-alert color="error" icon="warning" :value='$store.state.errors.register'>
+          <span v-html='$store.state.errors.register'></span>
         </v-alert>
     </v-form>
     
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-  import axios from 'axios'
+  
   import { isEmail, isLength } from 'validator'
   
 
@@ -80,25 +80,7 @@
 
         try
         {
-          // const req = await axios({
-          //   method: 'post',
-          //   url: `/user/register`,
-          //   headers: {'Authorization': `Bearer ${this.$store.state.user.jwt}`},
-          //   data: { email: this.email, password: this.password }
-          // })
           this.$store.dispatch('user/register', {email: this.email, password: this.password}) 
-          // if (req.data.result)
-          // {            
-          //   this.$store.commit('user/SET_USER_DATA', req.data.payload)                      
-          //   this.$store.commit('dialogs/TOGGLE_DIALOG', {
-          //     show: false,
-          //   })
-          //   this.$router.push('/dashboard')            
-          // }
-          // else
-          // {
-          //   this.error = req.data.payload.message
-          // }
         }
         finally
         {
@@ -109,7 +91,3 @@
     }
   }
 </script>
-
-<style lang="stylus" scoped>
-
-</style>

@@ -146,31 +146,28 @@
           country: this.country
         }
 
-        await axios({
+        let req = await this.$axios({
           method: 'post',
-          url: `/api/user/address`,
-          headers: {Authorization: `Bearer ${this.$store.state.user.jwt}`},
+          url: `/user/address`,
           data: address
         })
-        .then(res => {
-          if (res.data.result)
-          {
-            this.formdata.color = 'success'          
-            const user = {...this.$store.state.user, addresses: [...this.$store.state.user.addresses]}
-            user.addresses.push(res.data.payload.address)                 
-            this.$store.commit('SET_USER_DATA', user)
-          }
-          else
-          {          
-            this.formdata.color = 'error'
-          }
-          this.formdata.show = 1
-          this.formdata.text = res.data.payload.message
-          this.isSubmitting = false
-        })
-        .catch(e => {
-          this.isSubmitting = false
-        })        
+        
+        
+        if (req.data.result)
+        {
+          this.formdata.color = 'success'          
+          const user = {...this.$store.state.user, addresses: [...this.$store.state.user.addresses]}
+          user.addresses.push(req.data.payload.address)                 
+          this.$store.commit('user/SET_USER_DATA', user)
+        }
+        else
+        {          
+          this.formdata.color = 'error'
+        }
+        this.formdata.show = 1
+        this.formdata.text = req.data.payload.message
+        this.isSubmitting = false
+             
       }
     }
   }
