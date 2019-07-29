@@ -13,7 +13,7 @@ if (process.env.NODE_ENV == 'production')
   // Since it's Function based now, .env doesn't load.
   //envfile = '.env.prod'
   apiUrl = 'https://us-central1-bnbcrate1.cloudfunctions.net/app/'
-  apiHeaders = { 'X-environment' : 'prod' }
+  apiHeaders = { 'X-environment' : 'production' }
 }
 else
 {
@@ -21,7 +21,7 @@ else
   envfile = '.env.dev'
   apiUrl = 'http://localhost:8080/'
   //apiUrl = 'https://us-central1-bnbcrate-dev.cloudfunctions.net/app/'
-  apiHeaders = { 'X-environment' : 'dev' }
+  apiHeaders = { 'X-environment' : 'development' }
 }
 
 // If netlify is building this, and BUILD_SOURCE is 'netlify',
