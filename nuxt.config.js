@@ -42,8 +42,9 @@ require('dotenv').config({ path: envfile });
 
 module.exports = {
   // Allows us to use .env variables in the client
+  // Use stripe dev, if undefined (means prod build, use live version
   env: {
-    STRIPE_PUBLIC_KEY: process.env.STRIPE_PUBLIC_KEY,    
+    STRIPE_PUBLIC_KEY: process.env.STRIPE_PUBLIC_KEY || 'pk_live_caRggoikgPngiPfPqRzdGgta',    
   },
 
   mode: 'universal',
