@@ -36,7 +36,7 @@ require('dotenv').config({ path: envfile });
 console.log('----------------------')
 //console.log(process.env.NODE_ENV)
 console.log(process.env.NODE_ENV )
-console.log(apiHeaders)
+
 
 
 
@@ -45,7 +45,8 @@ module.exports = {
   // Allows us to use .env variables in the client
   // Use stripe dev, if undefined (means prod build, use live version
   env: {
-    STRIPE_PUBLIC_KEY: process.env.STRIPE_PUBLIC_KEY || 'pk_live_caRggoikgPngiPfPqRzdGgta',    
+    STRIPE_PUBLIC_KEY: process.env.STRIPE_PUBLIC_KEY || 'pk_live_caRggoikgPngiPfPqRzdGgta',
+    NODE_ENV: (process.env.NODE_ENV  === 'development') ? 'development' : 'production'
   },
 
   mode: 'universal',
