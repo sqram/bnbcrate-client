@@ -1,13 +1,13 @@
 <template>
   <div class="loading">
     <div class="loading-circle"></div>
-    <h3>Fetching products...</h3>
+    <h3>{{ loadingText }}</h3>
   </div>
 </template>
 
 <script>
 export default {
-  
+  props: ['loadingText']
 }
 </script>
 

@@ -10,7 +10,7 @@
         <v-flex>
          <v-card>
            <v-card-text>
-             <div><b>Do you accept returns?</b></div>
+             <div><b>Can I return crates?</b></div>
              <div>
                Unfortunately, we don't accept returns. Especially since each crate
                may have a guest's name engraved on it.
@@ -45,7 +45,6 @@
           
 
 
-        </v-flex>
       </v-layout>
         
 

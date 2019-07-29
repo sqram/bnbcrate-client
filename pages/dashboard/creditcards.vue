@@ -10,7 +10,7 @@
       </v-snackbar>
 
       <header>
-        <h3>Credit Cards</h3>
+        <h3 class="display-1">Credit Cards</h3>        
         <p>
           Having credit cards saved allows you<br>
           to select them during checkout
@@ -21,81 +21,89 @@
           <v-card-text style="margin: 0 auto">
             <v-btn color='primary' @click.native.stop="toggleNewCreditCardForm">add new credit card</v-btn>
           </v-card-text>    
-        </div>
-        
+        </div>        
       </header>   
       
       
-      <!-- New Credit Card Form -->
-      <div style="visibility: hidden" id="newCreditCardForm">
-          <!-- <a class="close-form" @click.prevent='toggleNewCreditCardForm'>x</a> -->
-          <v-layout row wrap>
-            <!-- Payment -->
-            <v-flex d-flex xs12>
-              <v-card-text>
-                <label>
-                  <div>Credit card number</div>
-                  <div id='cardNumber-mount'></div>
-                  <span class="icon"><i class="material-icons">credit_card</i></span>
-                </label>
-                <div class="input-error" v-if='ccNumberError'>{{ccNumberError}}</div>
-              </v-card-text>
-            </v-flex>
-            <v-flex d-flex xs6>
-              <v-card-text>
-                <div>Expiration</div>
-                <div id='cardExpiry-mount'></div>  
-                <div class="input-error" v-if="ccExpiryError">{{ccExpiryError}}</div>
-              </v-card-text>
-            </v-flex>
-            <v-flex d-flex xs6>
-              <v-card-text>
-                <div>Security Code</div>
-                <div id='cardCvc-mount'></div>
-                <div class="input-error" v-if='ccCvcError'>{{ccCvcError}}</div>
-              </v-card-text>                
-            </v-flex>
-          </v-layout>
-
-          <v-layout>
-            <v-flex xs11>
-              <v-card-text>
-                <v-btn
-                  block
-                  color='secondary'
-                  large
-                  :loading='isSubmitting'
-                  @click='addCreditCard'>
-                  SAVE CREDIT CARD
-                </v-btn>
-              </v-card-text>
-            </v-flex>
-            <v-flex>
-              <v-card-text>
-                <v-btn          
-                color='error'
-                large
-                @click="toggleNewCreditCardForm">
-                cancel
-                </v-btn>
-              </v-card-text>
-            </v-flex>
-          </v-layout>
-      </div>         
+            
               
            
-      <div v-if="isFetching">
-        <loading />
+      <!-- <div v-if="isFetching">
+        <loading loading-text='Fetching credit cards...' />
       </div>
-      <div v-else>
+      -->
+      <div>
+         <!-- New Credit Card Form -->
+      <div style="visibility: hidden" id="newCreditCardForm">
+        <!-- <a class="close-form" @click.prevent='toggleNewCreditCardForm'>x</a> -->
+        <v-layout row wrap>
+          <!-- Payment -->
+          <v-flex d-flex xs12>
+            <v-card-text>
+              <label>
+                <div>Credit card number</div>
+                <div id='cardNumber-mount'></div>
+                <div class="input-error" v-if='ccNumberError'>{{ccNumberError}}</div>
+                <span class="icon"><i class="material-icons">credit_card</i></span>
+              </label>              
+            </v-card-text>
+          </v-flex>
+          <v-flex d-flex xs6>
+            <v-card-text>
+              <div>Expiration</div>
+              <div id='cardExpiry-mount'></div>  
+              <div class="input-error" v-if="ccExpiryError">{{ccExpiryError}}</div>
+            </v-card-text>
+          </v-flex>
+          <v-flex d-flex xs6>
+            <v-card-text>
+              <div>Security Code</div>
+              <div id='cardCvc-mount'></div>
+              <div class="input-error" v-if='ccCvcError'>{{ccCvcError}}</div>
+            </v-card-text>                
+          </v-flex>
+        </v-layout>
 
-        <v-card flat class="no-address" v-if='Array.isArray(creditCards) && !creditCards.length'>
+        <v-layout>
+          <v-flex xs11>
+            <v-card-text>
+              <v-btn
+                block
+                color='secondary'
+                large
+                :loading='isSubmitting'
+                @click='addCreditCard'>
+                SAVE CREDIT CARD
+              </v-btn>
+            </v-card-text>
+          </v-flex>
+          <v-flex>
+            <v-card-text>
+              <v-btn          
+              color='error'
+              large
+              @click="toggleNewCreditCardForm">
+              cancel
+              </v-btn>
+            </v-card-text>
+          </v-flex>
+        </v-layout>
+
+        <v-card text>
+          <v-card-text>
+            <b>Note:</b><i> You may see a $1 pending charge on your bank statement as part of the card authorization process. This is a <b>temporary authorization
+              </b> charge to ensure the card is valid, and <b>it will disappear from your statement</b>.</i>
+          </v-card-text>         
+        </v-card>
+      </div>   
+        <v-card text class="no-address" v-if='Array.isArray(creditCards) && !creditCards.length'>
           You have no cards saved.
         </v-card>
-          
-        <div v-for='(card, i) in creditCards' :key='i' if='creditCards.length'>
-          <div>
-              <v-card flex xs12>
+
+      <v-container grid-list-md>
+        <v-layout column>
+          <v-flex v-for='(card, i) in creditCards' :key='i' if='creditCards.length'>
+            <v-card flex xs12>
                 <v-card-text style="padding:0">
                   <div class="card-info">
                     <div class="card-number">{{ card.brand }} ending in ... <b>{{ card.last4 }}</b></div>
@@ -110,9 +118,13 @@
                   </div>
                 </v-card-text>
               </v-card>
-          </div> 
-        </div>
+          </v-flex>
+        </v-layout>  
+        </v-container>
+        
       </div>
+
+     
         
         
 
@@ -123,8 +135,8 @@
 <script>
 // https://stackoverflow.com/questions/41663010/update-parent-model-from-child-component-vue
 
-import axios from 'axios'
-import Loading from '../../components/Loading'
+
+import Loading from '~/components/Loading'
 export default {
   components: {
     Loading,
@@ -188,32 +200,39 @@ export default {
             this.snackbar.color = 'error'
             this.isSubmitting = false
           }
+          this.isSubmitting = false
           return
         }
         
-        const req = await axios({
-          method: 'post',
-          url: `${window.api}/user/cards`,
-          headers: {'Authorization': `Bearer ${this.$store.state.user.jwt}`},
-          data: { token: result.token }
-        })
+        try
+        {
         
-        this.snackbar.show = 1
-        this.snackbar.text = req.data.payload.message
-        this.snackbar.color = req.data.result ? 'success' : 'error'
-
-        if (req.data.result)
-        {
-          this.creditCards.push( req.data.payload.card )
-          this.isSubmitting = false
-        }
-        else
-        {
+          const req = await this.$axios({
+            method: 'post',
+            url: `/user/card`,
+            data: { token: result.token }
+          })
+          
           this.snackbar.show = 1
           this.snackbar.text = req.data.payload.message
           this.snackbar.color = req.data.result ? 'success' : 'error'
+
+          if (req.data.result)
+          {
+            this.creditCards.push( req.data.payload.card )
+            this.isSubmitting = false
+          }
+          else
+          {
+            this.snackbar.show = 1
+            this.snackbar.text = req.data.payload.message
+            this.snackbar.color = req.data.result ? 'success' : 'error'
+          }
         }
-        this.isSubmitting = false
+        finally
+        {
+          this.isSubmitting = false
+        }
       })
       
       
@@ -227,10 +246,9 @@ export default {
 
     async deleteCard (id)
     { 
-      const req = await axios({
+      const req = await this.$axios({
         method: 'delete',
-        url: `${window.api}/user/cards/?id=${id}`,
-        headers: {'Authorization': `Bearer ${this.$store.state.user.jwt}`}
+        url: `/user/card/?id=${id}`
       })
 
       if (req.data.result)
@@ -254,16 +272,14 @@ export default {
      *******************************************************/
 
     // Style elements & styling
-    window.stripe = Stripe('pk_test_0CoPbVlrcNnupYEd1fSRlrWU');
-    var elements = stripe.elements();    
+    window.stripe = Stripe(process.env.STRIPE_PUBLIC_KEY);
+    var elements = stripe.elements();
     var style = {
       base: {
         color: '#32325d',
-        lineHeight: '24px',
+        //lineHeight: '24px',
         fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
         fontSmoothing: 'antialiased',
-        background: 'none',
-        boxShadow: 'none',
         fontSize: '18px',
         '::placeholder': {
           color: '#aab7c4'
@@ -312,30 +328,40 @@ export default {
      *******************************************************/
     
     // 1. Fetch Stripe's customer id from datastore
-    const req = await axios({
-      method: 'get',
-      url: `${window.api}/user/cards`,
-      headers: {'Authorization': `Bearer ${this.$store.state.user.jwt}`}
-    })
-    
-    if (req.data.result)
+    try
     {
-      this.creditCards = req.data.payload.cards
-      this.isFetching = false
+
+    
+      const req = await this.$axios({
+        method: 'get',
+        url: `/user/cards`,
+      })
       
+      if (req.data.result)
+      {
+        this.creditCards = req.data.payload.cards
+        this.isFetching = false
+        
+      }
+    }
+    finally {
+      this.isFetching = false
     }
     
-    this.isFetching = false
+    
   },
 }
 </script>
 
 <style lang='stylus' scoped> 
+  i
+    color #666
   .input-error
     color #FF5252
 
   .no-address
     font-size 2em
+    margin-bottom 2em
     color #555    
     padding 3vmax
     text-align center
@@ -372,15 +398,14 @@ export default {
   #newCreditCardForm
     position relative
   #cardNumber-mount
-    padding-left 3em
+    
     
     & + span.icon
       position absolute
-      top -33px
-      left 6px
-      width 50px;
-      height 50px;
-      z-index 100
+      top 31px
+      right 10px
+  .v-card__text
+    padding 10px!important
   .card__text label
     position relative
   

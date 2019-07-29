@@ -17,7 +17,7 @@
         
         <v-flex xs10 md6 offset-xs1 offset-md3>          
           <v-text-field
-            box
+            filled
             label="Email address"
             type='email'
             required
@@ -58,7 +58,7 @@
           </v-flex>
           <v-flex xs10 md6 offset-xs1 offset-md3>          
             <v-text-field
-              box
+              filled
               label="Your account email"
               type='email'
               v-model="email"          
@@ -68,7 +68,7 @@
           </v-flex>
           <v-flex xs10 md6 offset-xs1 offset-md3>          
             <v-text-field
-              box
+              filled
               label="New password"
               type='text'
               v-model="pw1"          
@@ -78,7 +78,7 @@
           </v-flex>
           <v-flex xs10 md6 offset-xs1 offset-md3>          
             <v-text-field
-              box
+              filled
               label="Confirm new password"
               type='text'
               v-model="pw2"          

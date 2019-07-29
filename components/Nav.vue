@@ -1,106 +1,98 @@
 <template>
   <div>
     <!-- Icon and drawer. we only want these on mobile -->
-     <v-navigation-drawer fixed right clipped app disable-resize-watcher disable-route-watcher v-model="drawer">
-      <!--
-      <v-list  v-if='$store.state.user.jwt'>
-        <v-list-tile to="/dashboard">
-          <v-list-tile-action>
-            <v-icon>dashboard</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Dashboard</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-      <v-list  v-else>
-        <v-list-tile @click.native.stop="toggleDialog('login')">
-          <v-list-tile-action>
-            <v-icon>person</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Login</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <v-list-tile @click.native.stop="toggleDialog('register')">
-          <v-list-tile-action>
-            <v-icon>person</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Register</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list> -->
+     <v-navigation-drawer 
+      color='primary'
+      fixed
+      right
+      clipped
+      app
+      light
+      disable-resize-watcher
+      disable-route-watcher
+      v-model="drawer">
 
+      
+      <v-list dark>
+        <!-- Login -->
+        <v-list-item v-if='!$store.state.user.jwt' link>
+          <v-list-item-icon>
+            <v-icon>person</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>Login</v-list-item-content>
+        </v-list-item>
 
-      <v-list>
+        <!-- Register -->
+        <v-list-item v-if='!$store.state.user.jwt' link>
+          <v-list-item-icon>
+            <v-icon>person</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>Register</v-list-item-content>
+        </v-list-item>         
+
         <!-- About -->
-        <v-list-tile to="/about" @click='drawer = false'>
-          <v-list-tile-action>
+        <v-list-item link>
+          <v-list-item-icon>
             <v-icon>announcement</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>About</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+          </v-list-item-icon>
+          <v-list-item-content>About</v-list-item-content>
+        </v-list-item>
 
         <!-- FAQs -->
-        <v-list-tile to="/faq" @click='drawer = false'>
-          <v-list-tile-action>
+        <v-list-item link>
+          <v-list-item-icon>
             <v-icon>help_outline</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>FAQs</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+          </v-list-item-icon>
+          <v-list-item-content>FAQs</v-list-item-content>
+        </v-list-item>
 
-        <!-- Contact -->
-        <v-list-tile to="/contact" @click='drawer = false'>
-          <v-list-tile-action>
-            <v-icon>mail_outline</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Contact</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+        <!-- Logout -->
+        <v-list-item link v-if='$store.state.user.jwt'>
+          <v-list-item-icon>
+            <v-icon>logout</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>Logout</v-list-item-content>
+        </v-list-item>       
       </v-list>
+
+      
     </v-navigation-drawer>
     
 
     <!-- DESKTOP -->
-    <v-toolbar dark>     
+    <v-toolbar dark>
       <v-toolbar-items>
-        <v-btn flat  to='/' id='navlogo'></v-btn>
+        <v-btn text  to='/' id='navlogo'></v-btn>
       </v-toolbar-items>   
       <v-spacer></v-spacer>
 
-      <div class="hidden-xs-only">
-        <v-btn flat  to='/about'>About</v-btn>
+      
+      <v-btn text  to='/about' class="hidden-xs-only" v-if='!$store.state.user.jwt'>About</v-btn>
+      
+
+      <!-- <div class="hidden-xs-only">
+        <v-btn text  to='/contact'>contact</v-btn>
       </div>
 
       <div class="hidden-xs-only">
-        <v-btn flat  to='/contact'>contact</v-btn>
-      </div>
-
-      <div class="hidden-xs-only">
-        <v-btn flat  to='/faq'>FAQs</v-btn>
-      </div>
+        <v-btn text  to='/faq'>FAQs</v-btn>
+      </div> -->
 
       
       <div class="hidden-xs-only">
         <div  v-if="$store.state.user.jwt">
-          <v-btn flat to='/dashboard'>My Dashboard</v-btn>          
+          <v-btn text to='/dashboard'>My Dashboard</v-btn>          
         </div>
         <div v-else>
-          <v-btn flat @click.native.stop="showDialog('login')">Log in</v-btn>
-          <v-btn flat @click.native.stop="showDialog('register')">Register</v-btn>
+          <v-btn text @click.native.stop="showDialog('login')">Log in</v-btn>
+          <v-btn text @click.native.stop="showDialog('register')">Register</v-btn>
         </div>
       </div>
       
       
       <v-btn to='/crates' class='accent ship'>SHIP A CRATE</v-btn>    
   
-      <v-toolbar-side-icon @click.stop="drawer = !drawer" class="hidden-md-and-up"></v-toolbar-side-icon>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" class="hidden-sm-and-up"></v-app-bar-nav-icon>
       
     </v-toolbar>
 
@@ -114,32 +106,34 @@
     {
       return {
         drawer: false,
+        items: [
+          { title: 'Login', icon: 'person', click: `showDialog('login')` },
+          { title: 'About', icon: 'announcement' },
+          { title: 'Contact', icon: 'mail_outline' },
+          { title: 'FAQs', icon: 'person' },
+          { title: 'MY DASHBOARD', icon: 'person' },
+          { title: 'SHIP A CRATE', icon: 'person' },
+        ]
       }
     },
-   
     methods: {
       showDialog (content)
       {
-        this.$store.commit('dialogs/TOGGLE_DIALOG', {
+        this.$store.dispatch('dialogs/toggleDialog', {
           show: true,
           content,
         })     
-      },
-  
-      async logout()
-      {
-        var req = await axios.get(`/user/logout`)
-        if (req.data.result)
-        {
-          this.$router.push('/')
-        }
       }
     }    
   }
 </script>
 
-<style lang="stylus">
-
+<style lang="stylus" scoped>
+  // Vuetify inserts a header element when using v-toolbar
+  header
+    margin 0
+    padding 0
+    background #2d3e50 !important
   #navlogo
     color $blue
     //border 1px dashed $blue
@@ -148,9 +142,10 @@
     
 
       
-  nav
-    background #2d3e50!important
-    
+  
+  // This is insserted inside nav by vuetify
+
+
     //background #273337!important
     //background white!important
     //box-shadow none!important

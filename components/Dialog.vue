@@ -2,43 +2,74 @@
 
   <v-dialog v-model="show" max-width="700px">
     
-  <div v-if="content == 'login'">
-    <v-card>
-      <v-card-title column style='flex-direction: column'>
-      <div class="headline">Login to your account</div>    
-    </v-card-title>    
-    </v-card>
-    <v-card>
-      <v-card-text>
-        <FormLogin />          
-        <v-flex class="text-xs-right">
-          <v-btn flat small color="secondary" to='/reset-password' @click='show = false'>Forgot password?</v-btn>
-          <v-btn small  flat color='secondary'  @click.prevent='toggleDialog("register")'>Don't have an account? Create one!</v-btn>
-        </v-flex>                        
-      </v-card-text>       
-    </v-card>
-  </div>
+    <div v-if="content == 'login'">
+      <v-card>
+        <v-card-title class="headline grey lighten-5" primary-title>
+          Login to your account
+        </v-card-title>
+
+        <v-card-text>
+          <FormLogin />          
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn 
+            text
+            small
+            color="secondary"
+            to='/reset-password'
+            class="caption"
+            @click='show = false'>
+              Forgot password?
+            </v-btn>
+          <v-btn
+            small
+            text
+            color='secondary'
+            class="caption"
+            @click.prevent='toggleDialog("register")'>
+              Don't have an account? Create one!
+            </v-btn>
+        </v-card-actions>
+      </v-card>
+    </div>
 
 
-  <div v-if="content == 'register'">
-    <v-card>
-      <v-card-title column style='flex-direction: column'>
-        <div class="headline">Create your account!</div>             
-      </v-card-title>
-    </v-card>
-    <v-card>
-      <v-card-text>
-        <FormRegister />
-        <v-flex class="text-xs-right">
-          <v-btn small flat color='secondary'  @click.prevent='toggleDialog("login")'>Already have an account? Log in!</v-btn>
-        </v-flex>       
-      </v-card-text>
-    </v-card>
-  </div>
+    <div v-if="content == 'register'">
+      <v-card>
+        <v-card-title class="headline grey lighten-5" primary-title>
+          <div class="headline">Create your account!</div>             
+        </v-card-title>
+      
+        <v-card-text>
+          <FormRegister />
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn 
+            text color='secondary'
+            class="caption"
+            @click.prevent='toggleDialog("login")'>
+              Already have an account? Log in!
+          </v-btn>
+        </v-card-actions>       
+      </v-card>
+    </div>
   
   </v-dialog>
 </template>
 
+
+<style lang="stylus" scoped>
+  .headline
+    text-align center
+</style>
 
 <script>
   import FormRegister from './FormRegister'
@@ -60,7 +91,7 @@
         },
         set (flag)
         {
-          this.$store.dispatch('dialogs/toggleDialog', { })
+          this.$store.commit('dialogs/TOGGLE_DIALOG', { })
         }        
       },
       content: {
@@ -70,7 +101,7 @@
         },
         set (content)
         {
-          this.$store.dispatch('dialogs/toggleDialog', { content })
+          this.$store.commit('dialogs/TOGGLE_DIALOG', { content })
         }
       }
     },
@@ -87,7 +118,7 @@
 
       toggleDialog (content)
       {
-        this.$store.dispatch('dialogs/toggleDialog', { show: true, content })      
+        this.$store.commit('dialogs/TOGGLE_DIALOG', { show: true, content })      
       }      
     }
  

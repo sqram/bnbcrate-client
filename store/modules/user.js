@@ -1,51 +1,36 @@
 const state = () => {
-  // Use `email` to check if user is logged in
+  // Use `jwt` to check if user is logged in
   return {
     email: null,
     jwt: null,
     stripeId: null,
     preferences: null,
-    addresses: [],
-    errors: {
-      login: '',
-      register: ''
-    }
+    addresses: []
   }
 }
 
 
 const actions = {
   
-  async register ({ commit, rootState }, obj)
+  async register ({ state,commit, rootState }, obj)
   {
     let req = await this.$axios({
       method: 'post',
       url: `/user/register`,
       data: { email: obj.email, password: obj.password }
     })
-
     
     if (req.data.result)
     {
-      commit('SET_USER_DATA', {
-        email: req.data.email,
-        jwt: req.data.payload.jwt,
-        stripeId: req.data.payload.stripeId,
-        addresses: req.data.payload.addresses,
-        preferences: req.data.payload.preferences
-      })
-
-      commit('CLEAR_ERRORS')
-      commit('dialogs/TOGGLE_DIALOG', {
-         show: false,
-      })
+      commit('SET_USER_DATA', req.data.payload)
+      commit('errors/CLEAR_ERRORS', { }, { root: true })
+      commit('dialogs/TOGGLE_DIALOG', { show: false }, { root: true })      
+      this.$router.push('/dashboard')
     }
     else
-    {
-      commit('SET_ERROR', { type: 'register', message: req.data.payload.message })
-    }
-
-    //this.$router.push('/dashboard')            
+    {      
+      commit('errors/SET_ERROR', { type: 'register', message: req.data.payload.message }, { root: true })
+    }    
   },
 
 
@@ -54,10 +39,55 @@ const actions = {
     commit('SET_USER_DATA', obj)    
   },  
     
-  updatePreferences ({ commit, dispatch, state }, obj)
+  async updateNewsletterSettings ({ commit, dispatch, state }, obj)
   { 
-    commit('UPDATE_PREFERENCES', obj)           
+    commit('UPDATE_NEWSLETTER_SETTINGS', obj)           
   },
+
+  /*
+  async addAddress ({ commit, dispatch, state }, obj)
+  {
+    let req = await this.$axios({
+      method: 'post',
+      url: `/user/address`,
+      data: obj
+    })
+    
+    if (req.data.result)
+    {
+      this.formdata.color = 'success'          
+      
+      state.addresses.push(res.data.payload.address)                 
+      //this.$store.commit('SET_USER_DATA', user)
+    }
+    else
+    {          
+      this.formdata.color = 'error'
+    }
+    this.formdata.show = 1
+    this.formdata.text = res.data.payload.message
+    this.isSubmitting = false
+  
+  },
+  */
+
+  async getAddresses ({ commit, dispatch })
+  {
+    let req = await this.$axios({
+      url: `/user/addresses`,      
+      method: 'get'
+    })
+
+    if (!req.data.result)
+    {
+      return 
+    }
+
+    if (req.data.payload.addresses.length)
+    {
+      commit('SET_USER_DATA', {addresses: req.data.payload.addresses})    
+    }
+  }
 
 } 
 // end actions
@@ -83,14 +113,15 @@ const mutations = {
     })
   },
 
+
   /**
    * Update user's preferences, such as
    * receive email updates, etc.
    * 
-   * @param {Obj} state 
-   * @param {Obj} obj object of user's preferences
+   * @param {Object} state 
+   * @param {Boolean} determines if user newsletter is on or off
    */
-  UPDATE_PREFERENCES (state, obj)
+  UPDATE_NEWSLETTER_SETTINGS (state, obj)
   {
     state.preferences = obj    
   },
@@ -98,41 +129,21 @@ const mutations = {
 
   /**
    * Logs a user out by clearing localStorage
-   * @param {Bool} obj.true if true, redirects to home page
+   * 
+   * @param {Boolean} obj.redirect if true, redirects to home page
    */
   LOGOUT (state, obj)
   {
-    console.log('LOGGING USER OUT')
-    window.localStorage.clear()
-    for( let key in state)
+    for (let key in state)
     {
       state[key] = ''
-    }
+    }    
+    
     if (obj.redirect)
     {
       window.location.href = '/'
     }
-  },
-
-
-  /**
-   * Sets either a login error or a register error.
-   * `obj.type` must be the type of error: 'login' or 'register'
-   * `obj.message` is a string of the error message
-   * 
-   * @param {*} state 
-   * @param {*} obj  an object with the type, and message.
-   */
-  SET_ERROR (state, obj)
-  {
-    state.errors[obj.type] = obj.message
-  },
-
-  CLEAR_ERRORS (state) {
-    state.errors = {}
   }
-
-
 }
 
 

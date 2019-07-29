@@ -9,7 +9,7 @@
       <v-form :hidden='xhr.result == 1' ref='contactform'>        
         <v-flex xs10 md8 offset-xs1 offset-md2>
           <v-text-field
-            box
+            filled
             label="Your E-mail"
             type='email'
             v-model="email"          
@@ -19,7 +19,7 @@
         </v-flex>
         <v-flex xs10 md8 offset-xs1 offset-md2>       
           <v-select
-            box
+            filled
             label="Select a topic"
             :items="items"
             v-model='select'

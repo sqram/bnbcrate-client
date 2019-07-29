@@ -6,28 +6,24 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt build",
+    "build": "export NODE_ENV=production; nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate",
+    "generate": "export NODE_ENV=production; nuxt generate",
     "deploy-client-dev": "npm run generate && gcloud config set project bnbcrate-dev && gsutil  cp -r dist/* gs://bnbcrate-dev.appspot.com"
   },
   "dependencies": {
-    "@chenfengyuan/vue-carousel": "^1.0.2",
     "@nuxtjs/axios": "^5.5.3",
-    "@nuxtjs/vuetify": "^0.5.6",
+    "@nuxtjs/vuetify": "^1.0.1",
     "hooper": "^0.3.1",
     "nuxt": "^2.8.1",
     "validator": "^11.0.0",
-    "vue-agile": "^1.0.11",
-    "vue-concise-slider": "^3.4.1",
-    "vuetify-loader": "^1.2.1",
-    "vuex-persistedstate": "^2.5.4",
-    "yarn": "^1.16.0"
+    "vuex-persistedstate": "^2.5.4"
   },
   "devDependencies": {
     "dotenv": "^7.0.0",
     "nodemon": "^1.18.9",
     "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.2"
+    "stylus-loader": "^3.0.2",
+    "vuetify-loader": "^1.2.1"
   }
 }

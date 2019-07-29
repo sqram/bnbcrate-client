@@ -1,64 +1,42 @@
 <template>
     
   <div>
-    <v-container grid-list-xl v-if='$store.state.products.crates.length'>
-      <header>
-        <h3 class="display-1" >Select Your Crates</h3>
-        <p>
-          Select the quantity of each
-          crate you'd like us to ship
-        </p>  
-      </header>
+     <header>
+      <h3 class="display-1" >Select Your Crates</h3>
+      <p>
+        Select the quantity of each
+        crate you'd like us to ship
+      </p>  
+    </header>
+
+    <v-container grid-list-xl v-if='$store.state.products.crates.length'>     
 
       <v-layout row wrap>
         
         <!-- Left side - Crate Selection -->
         <v-flex xs12 sm8 md8 lg6 xl4 offset-lg1 offset-xl2>
-          <v-layout row wrap>
-
-      
-            <v-flex d-flex xs12 v-for="crate in $store.state.products.crates" :key='crate.name'>
-              <v-card>
-                <!-- <v-img src='https://www.quickenloans.com/blog/wp-content/uploads/2019/05/iStock-177303239.jpg'></v-img> -->
-                
-                <v-layout row wrap>
-                  <v-flex xs12>
-                    <hooper :settings="hooperSettings">
-                       <slide>                        
-                        <v-img src='/img/products/filtered/img_1563.jpeg'></v-img> 
-                      </slide>
-                      <slide>
-                        <v-img src='/img/products/filtered/img_1587.jpeg'></v-img> 
-                      </slide>
-                      <slide>
-                        <v-img src='/img/products/filtered/img_1592.jpeg'></v-img> 
-                      </slide>
-                      <slide>
-                        <v-img src='/img/products/filtered/img_1588.jpeg'></v-img> 
-                      </slide>
-                   </hooper>
-                  </v-flex>
-                </v-layout>
-                
-              
-                
-
-          
-      
-                
-                <v-layout class="crate-selection">
+          <v-container>
+            <v-layout row wrap>
+              <v-flex d-flex xs12 v-for="crate in $store.state.products.crates" :key='crate.name'>
+                <v-card>                
+                  <v-layout row wrap>
+                    <v-flex xs12>
+                      <v-img src='/img/products/filtered/img_1563.jpeg'></v-img> 
+                    </v-flex>
+                  </v-layout>
 
                   <!-- count -->
-                  <v-flex xs4 md3>
-                    <v-card-text>
-                      <NumberInput :crate-name="crate.name" :crate-id='crate.id' :crate-price='crate.price' />
-                    </v-card-text>
-                  </v-flex>
+                  <v-layout class="crate-selection">
+                    <v-flex xs4 md3>
+                        <v-card-text>
+                          <NumberInput :crate-name="crate.name" :crate-id='crate.id' :crate-price='crate.price' />
+                        </v-card-text>
+                    </v-flex>
 
-                  <!-- description -->
-                  <v-flex xs8 md9 class="crate-info">                
+                    <!-- description -->
+                    <v-flex xs8 md9 class="crate-info">                
                     <v-card-text>
-                      {{ crate.name }} crate
+                      <span class="crate-name">{{ crate.name }} crate</span>
                       <small>
                         <span v-for="(item, k, i) in crate.items" :key='i'>
                           <span>{{item}}</span>
@@ -70,12 +48,21 @@
                       </small>   
                     </v-card-text>                 
                   </v-flex>
-                </v-layout>                    
-              </v-card>
-            </v-flex>
+                  </v-layout>
+                  <v-layout class="crate-selection">
 
-           
-          </v-layout>
+                  
+                  
+
+                  
+                
+                </v-layout>                            
+                </v-card>
+              </v-flex>
+
+            
+            </v-layout>
+          </v-container>
         </v-flex>
         
         
@@ -86,49 +73,28 @@
             <v-card-text>
               <div class="order-summary">           
                 <div class="price">
-                  <span class="currency">$</span>{{ $store.getters['cart/cartTotal'] }}
-                </div>
+                  <span class="currency">$</span>{{ $store.getters['cart/cartTotal'] }}                  
+                </div>               
 
-                 <v-btn 
-                  color='primary'  
-                  light
-                  
-                  depressed
-                  block
-                  large 
-                  to="/checkout" 
-                  :disabled="$store.getters['cart/cartTotal'] == 0">
-                    OK, SHIP!
-                  </v-btn>
-
+                  <v-card-text>
+                     <v-btn 
+                      color='primary'  
+                      light                 
+                      block
+                      large 
+                      to="/checkout" 
+                      :disabled="$store.getters['cart/cartTotal'] == 0">
+                      OK, SHIP!
+                    </v-btn>
+                  </v-card-text>
                  
-                 <v-card-text class="text-sm-center">
+                 <v-card light flat class="text-sm-center grey--text">
                   ( Shipping is <b>FREE</b> )
-                </v-card-text>
+                </v-card>
                  
               </div>
               
-              <!--
-              <v-card dark class="premium">
-                <div class="corner topleft"></div>
-                <div class="corner topright"></div>
-                <div class="corner bottomleft"></div>
-                <div class="corner bottomright"></div>
-                <v-card-text>
-                  <v-switch label="Use Premium crates?" 
-                    dark
-                    v-model="$store.state.premium"
-                    @change="$store.dispatch('togglePremium')"
-                    color="primary"
-                    hide-details>  
-                  </v-switch>
-                  <p>
-                    Crates will be black with golden corners.<br>
-                    Perfect for the business or executive guest. (+ $1)
-                  </p>
-                </v-card-text>
-              </v-card>
-              -->
+            
             </v-card-text>
           </v-card>
         </v-flex>
@@ -184,10 +150,10 @@ export default {
     margin-top 5em
 
   .crate-selection
-    font-size 2.3em
+    
     color #444 
     small
-      font-size 40%
+      //font-size 40%
       display block
       position relative
       line-height 20px
@@ -206,6 +172,8 @@ export default {
     margin-left 0.4em
     display inline-block
     vertical-align top
+    .crate-name
+      font-weight 
     @media $xs
       margin-left 84px
       font-size 24px
@@ -220,6 +188,7 @@ export default {
     .price
       font-size 4em
       text-align center
+      margin 10px 0 30px
       //color $salmon
     .currency
       font-size 60%
@@ -231,6 +200,7 @@ export default {
       .price
         color inherit
         font-size 2.5em
+        
         .currency
           font-size 50%
       

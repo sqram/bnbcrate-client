@@ -96,9 +96,11 @@
           password: this.password          
         })
         .then( response => {
-          if (response.data.result)
+          console.log(response)
+          if (response.result)
           {
-            this.$store.dispatch('dialogs/toggleDialog', {
+            console.log('---- ayyyy')
+            this.$store.commit('dialogs/TOGGLE_DIALOG', {
               dialogKey: 'auth',
               show: false
             })
@@ -112,12 +114,10 @@
             //   //cards: response.data.payload.cards
             // }            
             
-            this.$store.commit('dialogs/SET_USER_DATA', response.data.payload)         
-            
-            
+            this.$store.commit('user/SET_USER_DATA', response.payload)                    
             
             // Redirect
-            //this.$router.push('/dashboard')
+            this.$router.push('/dashboard')
           }
           else
           {

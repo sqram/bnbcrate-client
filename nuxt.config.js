@@ -42,8 +42,9 @@ require('dotenv').config({ path: envfile });
 
 module.exports = {
   // Allows us to use .env variables in the client
+  // Use stripe dev, if undefined (means prod build, use live version
   env: {
-    STRIPE_PUBLIC_KEY: process.env.STRIPE_PUBLIC_KEY,    
+    STRIPE_PUBLIC_KEY: process.env.STRIPE_PUBLIC_KEY || 'pk_live_caRggoikgPngiPfPqRzdGgta',    
   },
 
   mode: 'universal',
@@ -62,8 +63,8 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'stylesheet',
-        href:
-          'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
+        href: 'https://fonts.googleapis.com/css?family=Material+Icons'
+        //href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
       }
     ],
     script: [
@@ -89,16 +90,20 @@ module.exports = {
   plugins: [
     // Axios plugins sets header
     { src: '~/plugins/axios.js'},
+    //{ src: '~/plugins/vuetify.js'},
     { src: '~/plugins/localStorage.js', ssr: false }
   ],
 
   /*
   ** Nuxt.js modules
   */
-  modules: [
-    
+  modules: [    
     '@nuxtjs/axios',
-    ['@nuxtjs/vuetify', { treeShake: false }]
+    //['@nuxtjs/vuetify', { treeShake: false }]
+  ],
+
+  devModules: [
+    '@nuxtjs/vuetify'
   ],
 
   // Axios settings
@@ -111,9 +116,13 @@ module.exports = {
   // Config for vuetify modules
   vuetify: {    
     theme: {
-      primary: '#389ab9',
-      secondary: '#b0bec5',
-      accent: '#cd5c5c',    
+      themes: {
+        light: {
+          primary: '#389ab9', // primary blue (buttons, etc)
+          secondary: '#b0bec5', // used for subtle text
+          accent: '#cd5c5c'
+        }
+      }
     }
   },
 
@@ -123,8 +132,8 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    transpile: ['vuetify/lib'],
-    plugins: [new VuetifyLoaderPlugin()],
+    
+    
     loaders: {
       stylus: {
         import: ['~assets/style/variables.styl']
