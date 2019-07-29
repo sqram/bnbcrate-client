@@ -1,30 +1,29 @@
 <template>
   <div class="index">
     
-    
-      <v-layout  align-center class="hero">
-
-        <!-- this just makes the next vflex v aligned -->
-        
-        
-        <v-flex xs10 sm5 md7 lg5>
-          <v-card flat class="header">
-            <h2>
-              bnbcrate
-            </h2>
-          </v-card>
-          <v-card class="subheader">
-            <h3>
-              The simplest, easiest, and most beautiful way to provide your guests
-              with quality toiletries.
-            </h3>
-          </v-card>
-          <v-layout column justify-center align-center>
-            <v-btn to='/crates' large class='primary'>SHIP A CRATE</v-btn>    
+  
+    <v-layout  align-center class="hero">       
+      <v-flex xs10 sm5 md7 lg5 align-self-center>
+        <v-card flat tile class="transparent">
+          <v-layout column class="header">
+            <v-flex tile>
+              <h2>bnbcrate</h2>
+            </v-flex>
+            <v-flex>
+              <v-card tile>
+                <h3>
+                  The simplest, easiest, and most beautiful way to provide your guests
+                  with quality toiletries.
+                </h3>
+              </v-card>
+            </v-flex>
+            <v-flex align-self-center tile>
+              <v-btn  to='/crates' tile large class='primary'>SHIP A CRATE</v-btn>    
+            </v-flex>
           </v-layout>
-        </v-flex>
-        
-      </v-layout>
+        </v-card>
+      </v-flex>        
+    </v-layout>
     
     
 
@@ -43,13 +42,15 @@
         </v-card>
       </v-flex>
       <v-flex xs12 md4>
-        <v-card >
+        <v-card>
           <v-card-text>
             <h5>Delightfully Simple</h5>
             <p>
-              We offer 2 crates. <b>Select the quantity of each
+              <!-- We offer 2 crates. <b>Select the quantity of each
               crate</b> and we'll deliver them to you or one of your
-              properties.
+              properties. -->
+              Simply select the quantity of crates you want us to ship.
+              You can also create an account to save shipping addresses for quicker checkouts
             </p>
           </v-card-text>
         </v-card>
@@ -71,19 +72,17 @@
     
   </div>
 </template>
-<script>
 
-export default {
-
-}
-</script>
 <style lang='stylus'>  
 
   // http://rexadesign.it/it/collections
   div.index
+    .transparent
+      background none
     .hero
       height 60vh
       justify-content center 
+      font-family sans-serif
       //background url(http://cdn.home-designing.com/wp-content/uploads/2012/12/Modern-bathroom-with-large-windows.jpg)
       //background url(https://myhomemyfuture.com/wp-content/uploads/2017/07/modern_vanity_bathroom.jpg)
       
@@ -95,29 +94,38 @@ export default {
       
       background-size 100% 150%
       padding auto 1em
+    
+    
     .header
-      background alpha(white, 49%)
-      
+      & > .flex
+        margin 7px 0
+
+        &:first-of-type
+          background alpha(white, 49%)
+
       h2
         //text-shadow 1px 1px 0 alpha(black, 70%)
         text-shadow 1px 1px 0 alpha(white, 70%)
         width 100%
-        font-size 3em
+        font-size 2.5em
         padding 0.4em
         text-align center
         color $darkblue
-    .subheader
-      margin-top 0.5em
       h3
         padding 1em
-        font-size 1.5em
+        font-size 1.2em
         text-shadow none
         color $darkblue
-        font-weight 100
+        font-weight 400
         text-align center
     h5
       font-size 1.2em
       margin-bottom 0.7em
+    
+    // Blue boxes under hero - give them white text
+    .primary > .v-card__text
+      color #fff
+
     @media (max-width: 600px)
       .subheader
         h3

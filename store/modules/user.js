@@ -80,12 +80,12 @@ const actions = {
 
     if (!req.data.result)
     {
-
+      return 
     }
 
     if (req.data.payload.addresses.length)
     {
-
+      commit('SET_USER_DATA', {addresses: req.data.payload.addresses})    
     }
   }
 
@@ -108,7 +108,6 @@ const mutations = {
    */
   SET_USER_DATA (state, obj)
   {   
-    console.log(obj)
     Object.keys(obj).forEach( key => {
       state[key] = obj[key] 
     })
@@ -131,7 +130,7 @@ const mutations = {
   /**
    * Logs a user out by clearing localStorage
    * 
-   * @param {Boolean} obj.true if true, redirects to home page
+   * @param {Boolean} obj.redirect if true, redirects to home page
    */
   LOGOUT (state, obj)
   {

@@ -29,7 +29,7 @@
   input[type="number"]
     border none
     padding 0.21em  0.4em
-    font-size 1.3em
+    font-size 2.3em
     width:100%
     color $blue
     &:focus
@@ -49,7 +49,7 @@
   .arrow-up, .arrow-down
     height 50%
     cursor pointer
-    font-size 80%
+    
     color $blue
     &:hover
       color $darkblue

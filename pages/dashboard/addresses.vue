@@ -31,94 +31,92 @@
           <FormNewAddress  @update='showNewAddressForm = false' />
         </div>
 
-        <div v-if='addresses.length'>
-          <div v-for='(address, i) in addresses' :key='i'>
-            <v-card flex  xs12>
-              <v-card-text >
-                <div @click='toggleEditForms(i)' class="address-preview">
-                  <span>
-                    {{ $store.state.user.addresses[i].street }},
-                    {{ $store.state.user.addresses[i].city }},
-                    {{ $store.state.user.addresses[i].zip }}                  
-                  </span>
+        <div v-if='addresses.length'>          
+          <v-card flex xs12 v-for='(address, i) in addresses' :key='i'>
+            <v-card-text >
+              <div @click='toggleEditForms(i)' class="address-preview">
+                <span>
+                  {{ $store.state.user.addresses[i].street }},
+                  {{ $store.state.user.addresses[i].city }},
+                  {{ $store.state.user.addresses[i].zip }}                  
+                </span>
+              </div>
+              <v-form v-if='editForms[i]' class="edit-form">
+                <v-layout wrap>
+                  <v-flex d-flex xs12>
+                    
+                    <v-card-text>
+                      <v-text-field 
+                      label="Address" 
+                      required
+                      :rules='rules.street'
+                      v-model='addresses[i].street'
+                      :value='addresses[i].street'>
+                      </v-text-field>
+                    </v-card-text>
+                  </v-flex>              
+                </v-layout>
 
-                </div>
-                <v-form v-if='editForms[i]' class="edit-form">
-                  <v-layout wrap>
-                    <v-flex d-flex xs12>
-                      
-                      <v-card-text>
-                        <v-text-field 
-                        label="Address" 
+                <v-layout row wrap>
+                  <v-flex  xs12 sm4>
+                    <v-card-text>
+                      <v-text-field
+                        label="City"
                         required
-                        :rules='rules.street'
-                        v-model='addresses[i].street'
-                        :value='addresses[i].street'>
-                        </v-text-field>
-                      </v-card-text>
-                    </v-flex>              
-                  </v-layout>
-
-                  <v-layout row wrap>
-                    <v-flex  xs12 sm4>
-                      <v-card-text>
-                        <v-text-field
-                          label="City"
-                          required
-                          :rules='rules.city'
-                          v-model='addresses[i].city'
-                          :value='addresses[i].city'>
-                        </v-text-field>
-                      </v-card-text>
-                    </v-flex>
-                    <v-flex  xs12 sm4>
-                      <v-card-text>
-                        <v-select
-                          label="State"
-                          :rules='rules.state'
-                          v-bind:items='states'
-                          v-model='addresses[i].state'
-                          :value='addresses[i].state'                        
-                          single-line
-                          required                          
-                          hide-details                          
-                        ></v-select>
-                      </v-card-text>
-                    </v-flex>
-                    <v-flex xs12 sm4>
-                      <v-card-text>
-                        <v-text-field 
-                        label="Zip" 
-                        required 
-                        :rules='rules.zip'
-                        v-model='addresses[i].zip'
-                        :value='addresses[i].zip'>
-                        </v-text-field>
-                      </v-card-text>
-                    </v-flex>
-                    <v-flex>
-                      <v-card-actions>
-                        <v-btn color="" @click='updateAddr($store.state.user.addresses[i].id, i)'>Save</v-btn>
-                        <v-btn
-                          color=""
-                          @click='deleteAddr($store.state.user.addresses[i].id, i)'>
-                          Delete
-                        </v-btn>
-                        <v-btn
-                          color=""
-                          @click='toggleEditForms(i)'>
-                          cancel
-                        </v-btn>
-                      </v-card-actions>
-                    </v-flex>
-                  </v-layout>
-                </v-form>     
-              </v-card-text>
-            </v-card>
-          </div>
+                        :rules='rules.city'
+                        v-model='addresses[i].city'
+                        :value='addresses[i].city'>
+                      </v-text-field>
+                    </v-card-text>
+                  </v-flex>
+                  <v-flex  xs12 sm4>
+                    <v-card-text>
+                      <v-select
+                        label="State"
+                        :rules='rules.state'
+                        v-bind:items='states'
+                        v-model='addresses[i].state'
+                        :value='addresses[i].state'                        
+                        single-line
+                        required                          
+                        hide-details                          
+                      ></v-select>
+                    </v-card-text>
+                  </v-flex>
+                  <v-flex xs12 sm4>
+                    <v-card-text>
+                      <v-text-field 
+                      label="Zip" 
+                      required 
+                      :rules='rules.zip'
+                      v-model='addresses[i].zip'
+                      :value='addresses[i].zip'>
+                      </v-text-field>
+                    </v-card-text>
+                  </v-flex>
+                  <v-flex>                    
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn color="" @click='updateAddr($store.state.user.addresses[i].id, i)'>Save</v-btn>
+                      <v-btn
+                        color=""
+                        @click='deleteAddr($store.state.user.addresses[i].id, i)'>
+                        Delete
+                      </v-btn>
+                      <v-btn
+                        color=""
+                        @click='toggleEditForms(i)'>
+                        cancel
+                      </v-btn>
+                    </v-card-actions>
+                  </v-flex>
+                </v-layout>
+              </v-form>     
+            </v-card-text>
+          </v-card>          
         </div>
 
-        <v-card flat v-else class="no-address">
+        <v-card text v-else class="no-address">
           You have no addresses saved.          
         </v-card>
       </div>
@@ -128,185 +126,187 @@
 
 
 <script>
-// https://stackoverflow.com/questions/41663010/update-parent-model-from-child-component-vue
+  // https://stackoverflow.com/questions/41663010/update-parent-model-from-child-component-vue
 
 
 
-import FormNewAddress from '~/components/FormNewAddress'
-import Loading from '~/components/Loading'
-import { isLength } from 'validator'
+  import FormNewAddress from '~/components/FormNewAddress'
+  import Loading from '~/components/Loading'
+  import { isLength } from 'validator'
 
 
-export default {
-  components: {
-    FormNewAddress,
-    Loading
-  },
-  data()
-  {
-    return {
+  export default {
+    components: {
+      FormNewAddress,
+      Loading
+    },
+    data()
+    {
+      return {
 
-      isFetching: true,
-      showNewAddressForm: false,
-      editForms: {},
-      snackbar: {
-        show: 0,
-        text: null,
-        color: null,
+        isFetching: true,
+        showNewAddressForm: false,
+        editForms: {},
+        snackbar: {
+          show: 0,
+          text: null,
+          color: null,
+        },
+
+        states: [
+          "AL", "AK", "AS", "AZ", "AR", "CA", "CO", "CT", 
+          "DE", "DC", "FM", "FL", "GA", "GU", "HI", "ID", 
+          "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MH", 
+          "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", 
+          "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "MP", 
+          "OH", "OK", "OR", "PW", "PA", "PR", "RI", "SC", 
+          "SD", "TN", "TX", "UT", "VT", "VI", "VA", "WA", 
+          "WV", "WI", "WY"
+        ],
+        rules: {        
+          street: [
+            v => isLength(v, { min: 2 }) || 'Street address is required.'
+          ],
+          zip: [
+            v => /[0-9a-zA-Z]+/i.test(v) || 'Enter a valid zip code (at least 5 digits)'
+          ],
+          city: [
+            v => isLength(v, { min: 1 }) || 'Enter a valid city.'
+          ],
+          state: [
+            v => isLength(v, { min: 2, max: 2 }) || 'Must be two letters.'
+          ]
+        }
+      }
+    },
+
+    
+
+    methods: {   
+      toggleEditForms(i)
+      {
+        this.editForms = { 
+          ...this.editForms,
+          [i]: !this.editForms[i]
+        };
       },
 
-      states: [
-        "AL", "AK", "AS", "AZ", "AR", "CA", "CO", "CT", 
-        "DE", "DC", "FM", "FL", "GA", "GU", "HI", "ID", 
-        "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MH", 
-        "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", 
-        "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "MP", 
-        "OH", "OK", "OR", "PW", "PA", "PR", "RI", "SC", 
-        "SD", "TN", "TX", "UT", "VT", "VI", "VA", "WA", 
-        "WV", "WI", "WY"
-      ],
-      rules: {        
-        street: [
-          v => isLength(v, { min: 2 }) || 'Street address is required.'
-        ],
-        zip: [
-          v => /[0-9a-zA-Z]+/i.test(v) || 'Enter a valid zip code (at least 5 digits)'
-        ],
-        city: [
-          v => isLength(v, { min: 1 }) || 'Enter a valid city.'
-        ],
-        state: [
-          v => isLength(v, { min: 2, max: 2 }) || 'Must be two letters.'
-        ]
-      }
-    }
-  },
 
-  
-
-  methods: {   
-    toggleEditForms(i)
-    {
-      this.editForms = { 
-        ...this.editForms,
-        [i]: !this.editForms[i]
-      };
-    },
-
-
-    /**
-     * Updates a user's address
-     */
-    
-    async updateAddr(id, index)
-    {
-      let address = this.addresses[index]
-
-      // Does this address exist in our store? Check for the ID
-      let storeAddress = this.$store.state.user.addresses.filter(a => a.id == id)[0] || null
+      /**
+       * Updates a user's address
+       */
       
-      if (!storeAddress)
+      async updateAddr(id, index)
       {
-        this.snackbar.show = 1
-        this.snackbar.text = "Unknown error"
-        this.snackbar.color = 'error'       
-        return
-      }   
+        let address = this.addresses[index]
 
-      
-      let req = await this.$axios({
-        method: 'put',
-        url: `/user/address/`,        
-        data: { address }
-      })
-
-      if (req.data.result)
-      {
-        this.snackbar.show = 1
-        this.snackbar.text = req.data.payload
-        this.snackbar.color = 'success'
-
-        // Update address in the state.user in place so view doesnt't shift
-        let userData = Object.assign({}, this.$store.state.user)        
-        let addresses = userData.addresses
-        var addressesClone = [...addresses]
-        addresses.forEach((addr,i) => {
-          if (addr.id == id)
-          {             
-            addressesClone[i] = address
-          }
-        })        
+        // Does this address exist in our store? Check for the ID
+        let storeAddress = this.$store.state.user.addresses.filter(a => a.id == id)[0] || null
         
-        this.$store.commit('user/SET_USER_DATA', {addresses: addressesClone})
+        if (!storeAddress)
+        {
+          this.snackbar.show = 1
+          this.snackbar.text = "Unknown error"
+          this.snackbar.color = 'error'       
+          return
+        }   
 
-      }
-      else
-      { 
         
-        /*
-        if (req.data.payload.code == 'NO_USER')      
-        {          
+        let req = await this.$axios({
+          method: 'put',
+          url: `/user/address/`,        
+          data: { address }
+        })
+
+        if (req.data.result)
+        {
+          this.snackbar.show = 1
+          this.snackbar.text = req.data.payload
+          this.snackbar.color = 'success'
+
+          // Update address in the state.user in place so view doesnt't shift
+          let userData = Object.assign({}, this.$store.state.user)        
+          let addresses = userData.addresses
+          var addressesClone = [...addresses]
+          addresses.forEach((addr,i) => {
+            if (addr.id == id)
+            {             
+              addressesClone[i] = address
+            }
+          })        
+          
+          this.$store.commit('user/SET_USER_DATA', {addresses: addressesClone})
+
         }
-        */
-        this.snackbar.show = 1
-        this.snackbar.text = req.data.payload.message
-        this.snackbar.color = 'error'        
-      }    
-    },
+        else
+        { 
+          
+          /*
+          if (req.data.payload.code == 'NO_USER')      
+          {          
+          }
+          */
+          this.snackbar.show = 1
+          this.snackbar.text = req.data.payload.message
+          this.snackbar.color = 'error'        
+        }    
+      },
 
 
-    /**
-     * Deletes an address
-     */
+      /**
+       * Deletes an address
+       */
 
-    async deleteAddr(id)
-    { 
-     
-      const req = await this.$axios({
-        method: 'delete',
-        url: `/user/address/?id=${id}`        
-      })
+      async deleteAddr(id)
+      { 
       
-      if (req.data.result)
-      {
-        this.snackbar.show = 1
-        this.snackbar.text = req.data.payload.message
-        this.snackbar.color = 'success'        
-        this.$store.commit('user/SET_USER_DATA', {
-          addresses: req.data.payload.addresses
+        const req = await this.$axios({
+          method: 'delete',
+          url: `/user/address/?id=${id}`        
         })
         
-      }        
+        if (req.data.result)
+        {
+          this.snackbar.show = 1
+          this.snackbar.text = req.data.payload.message
+          this.snackbar.color = 'success'        
+          this.$store.commit('user/SET_USER_DATA', {
+            addresses: req.data.payload.addresses
+          })
+          
+        }        
+      },
+
+    },
+    
+    async beforeMount() {
+      if (!this.$store.state.user.jwt)
+      {
+        //this.$router.push('/')
+      }
+      try
+      {
+        await this.$store.dispatch('user/getAddresses')
+      }
+      finally
+      {
+        this.isFetching = false
+      }
     },
 
-  },
-  
-  async beforeMount() {
-    if (!this.$store.state.user.jwt)
-    {
-      //this.$router.push('/')
-    }
-    try
-    {
-      await this.$store.dispatch('user/getAddresses')
-    }
-    finally
-    {
-      this.isFetching = false
-    }
-  },
-
-  computed: {
-    addresses ()
-    {
-      return JSON.parse(JSON.stringify(this.$store.state.user.addresses.slice(0)))
-    }
-  },
-  
-}
+    computed: {
+      addresses ()
+      {
+        return JSON.parse(JSON.stringify(this.$store.state.user.addresses.slice(0)))
+      }
+    },
+    
+  }
 </script>
 
 <style lang='stylus' scoped> 
+  .v-card
+    margin-bottom 7px
   .newAddressForm
     background white
 

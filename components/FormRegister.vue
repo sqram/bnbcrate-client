@@ -26,7 +26,7 @@
           Create Account
         </v-btn>
 
-        <v-alert color="error" icon="warning" :value='$store.state.errors.register'>
+        <v-alert color="error" icon="warning" :value='$store.state.errors.register' v-if='$store.state.errors.register'>
           <span v-html='$store.state.errors.register'></span>
         </v-alert>
     </v-form>
@@ -72,18 +72,15 @@
       {
         this.isSubmitting = true
                 
-        if (!this.$refs.registerForm.validate())
-        {
+        if (!this.$refs.registerForm.validate()) {
           this.isSubmitting = false
           return
         }
 
-        try
-        {
-          this.$store.dispatch('user/register', {email: this.email, password: this.password}) 
+        try {
+          this.$store.dispatch('user/register', { email: this.email, password: this.password }) 
         }
-        finally
-        {
+        finally {
           this.isSubmitting = false
         }
       }
@@ -91,3 +88,8 @@
     }
   }
 </script>
+
+<style lang="stylus" scoped>
+  .v-alert
+    margin-top 10px
+</style>

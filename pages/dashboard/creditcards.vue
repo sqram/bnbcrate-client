@@ -28,37 +28,12 @@
             
               
            
-      <div v-if="isFetching">
+      <!-- <div v-if="isFetching">
         <loading loading-text='Fetching credit cards...' />
       </div>
-      <div v-else>
-
-        <v-card flat class="no-address" v-if='Array.isArray(creditCards) && !creditCards.length'>
-          You have no cards saved.
-        </v-card>
-          
-        <div v-for='(card, i) in creditCards' :key='i' if='creditCards.length'>
-          <div>
-              <v-card flex xs12>
-                <v-card-text style="padding:0">
-                  <div class="card-info">
-                    <div class="card-number">{{ card.brand }} ending in ... <b>{{ card.last4 }}</b></div>
-                    <div class="card-exp">Expires: {{ card.exp_month }} / <b>{{ card.exp_year }}</b></div>
-                    <div>
-                      <v-btn          
-                        color='error'                      
-                        @click="deleteCard(card.id)">
-                        Delete
-                      </v-btn>
-                    </div>
-                  </div>
-                </v-card-text>
-              </v-card>
-          </div> 
-        </div>
-      </div>
-
-      <!-- New Credit Card Form -->
+      -->
+      <div>
+         <!-- New Credit Card Form -->
       <div style="visibility: hidden" id="newCreditCardForm">
         <!-- <a class="close-form" @click.prevent='toggleNewCreditCardForm'>x</a> -->
         <v-layout row wrap>
@@ -114,13 +89,42 @@
           </v-flex>
         </v-layout>
 
-        <v-card flat>
+        <v-card text>
           <v-card-text>
             <b>Note:</b><i> You may see a $1 pending charge on your bank statement as part of the card authorization process. This is a <b>temporary authorization
               </b> charge to ensure the card is valid, and <b>it will disappear from your statement</b>.</i>
           </v-card-text>         
         </v-card>
       </div>   
+        <v-card text class="no-address" v-if='Array.isArray(creditCards) && !creditCards.length'>
+          You have no cards saved.
+        </v-card>
+
+      <v-container grid-list-md>
+        <v-layout column>
+          <v-flex v-for='(card, i) in creditCards' :key='i' if='creditCards.length'>
+            <v-card flex xs12>
+                <v-card-text style="padding:0">
+                  <div class="card-info">
+                    <div class="card-number">{{ card.brand }} ending in ... <b>{{ card.last4 }}</b></div>
+                    <div class="card-exp">Expires: {{ card.exp_month }} / <b>{{ card.exp_year }}</b></div>
+                    <div>
+                      <v-btn          
+                        color='error'                      
+                        @click="deleteCard(card.id)">
+                        Delete
+                      </v-btn>
+                    </div>
+                  </div>
+                </v-card-text>
+              </v-card>
+          </v-flex>
+        </v-layout>  
+        </v-container>
+        
+      </div>
+
+     
         
         
 
@@ -244,7 +248,7 @@ export default {
     { 
       const req = await this.$axios({
         method: 'delete',
-        url: `/user/cards/?id=${id}`
+        url: `/user/card/?id=${id}`
       })
 
       if (req.data.result)
@@ -400,6 +404,8 @@ export default {
       position absolute
       top 31px
       right 10px
+  .v-card__text
+    padding 10px!important
   .card__text label
     position relative
   

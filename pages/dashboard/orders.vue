@@ -5,21 +5,21 @@
       <header>
         <h3 class="display-1">Your Order History</h3>        
       </header> 
-      <v-container>
-        <div v-if="isFetching">
-          <loading />
-        </div>  
+      <v-container grid-list-lg >
+        
+          <loading v-if='isFetching' />
+        
 
         
-        <v-layout wrap >        
-          <div v-if='orders && orders.length'>
-            <v-flex xs6 sm3 v-for='(order, i) in orders' :key='i' class="order" >        
+        <v-layout row wrap v-else> 
+          
+            <v-flex xs6 sm3 v-for='(order, i) in orders' :key='i' class="order" v-if='orders && orders.length' > 
               <v-card >
                 <v-card-text>                
                     <div class="date">{{ order.date }}</div>
                     <div class="items">
-                      <div v-for='(o, key) in order.items' :key='key'>
-                        {{ o[1] }} {{o[0]}}
+                      <div v-for='(o, key) in order.items' :key='key'>                      
+                        {{o.name}} Crate: {{ o.quantity }}
                       </div>
                     </div>
                     <div class="addr">
@@ -28,10 +28,10 @@
                 </v-card-text>
               </v-card>
             </v-flex>
-          </div>
-          <div v-else style="width: 100%">
+          
+          <v-flex v-else style="width: 100%">
             <h4 class="text-xs-center">You haven't placed any orders yet :(</h4>            
-          </div>
+          </v-flex>
         </v-layout>
       </v-container>
         
@@ -39,12 +39,12 @@
   </v-container>
 </template>
 <script>
-import axios from 'axios'
+
 import Loading from '~/components/Loading'
 
 export default {
   components: {
-    Loading,
+    Loading
   },
   data ()
   {
@@ -57,10 +57,9 @@ export default {
   async mounted ()
   {
     
-    const req = await axios({
+    const req = await this.$axios({
       method: 'get',
-      url: `${window.api}/user/orders`,
-      headers: {'Authorization': `Bearer ${this.$store.state.user.jwt}`}
+      url: `/user/order-history`
     })
 
     if (req.data.result)

@@ -13,14 +13,11 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.5.3",
-    "@nuxtjs/vuetify": "^0.5.6",
+    "@nuxtjs/vuetify": "^1.0.1",
     "hooper": "^0.3.1",
     "nuxt": "^2.8.1",
     "validator": "^11.0.0",
-    "vue-agile": "^1.0.11",
-    "vue-concise-slider": "^3.4.1",
-    "vuex-persistedstate": "^2.5.4",
-    "yarn": "^1.16.0"
+    "vuex-persistedstate": "^2.5.4"
   },
   "devDependencies": {
     "dotenv": "^7.0.0",

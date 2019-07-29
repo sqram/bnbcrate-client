@@ -23,7 +23,7 @@
           <v-card light>
             <v-card-text>
               <v-text-field
-                box
+                
                 label="Current password"
                 type='email'
                 required
@@ -33,7 +33,7 @@
               ></v-text-field>
 
               <v-text-field
-                box
+                
                 label="New password"
                 required
                 v-model="newPassword1"
@@ -45,7 +45,7 @@
               ></v-text-field>
 
               <v-text-field
-                box
+                
                 label="Retype new password"
                 required
                 v-model="newPassword2"              
