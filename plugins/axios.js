@@ -2,7 +2,7 @@ export default function ({ $axios,env, redirect }) {
   
   $axios.onRequest(config => {    
 
-    config.headers.common['X-environment'] = env
+    config.headers.common['X-environment'] = env.NODE_ENV
 
     // Add x-jwt to outgoing request headers, if vuex.jwt exists in localstore
     const jwt = JSON.parse(window.localStorage.getItem('vuex'))    
