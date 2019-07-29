@@ -1,75 +1,7 @@
 <template>
   <div class="index">
     
-  
-    <v-layout  align-center class="hero">       
-      <v-flex xs10 sm5 md7 lg5 align-self-center>
-        <v-card flat tile class="transparent">
-          <v-layout column class="header">
-            <v-flex tile>
-              <h2>bnbcrate</h2>
-            </v-flex>
-            <v-flex>
-              <v-card tile>
-                <h3>
-                  The simplest, easiest, and most beautiful way to provide your guests
-                  with quality toiletries.
-                </h3>
-              </v-card>
-            </v-flex>
-            <v-flex align-self-center tile>
-              <v-btn  to='/crates' tile large class='primary'>SHIP A CRATE</v-btn>    
-            </v-flex>
-          </v-layout>
-        </v-card>
-      </v-flex>        
-    </v-layout>
-    
-    
-
-    
-    <v-container class='features' grid-list-xl>     
-      <v-layout row wrap>
-      <v-flex xs12 md4>
-        <v-card dark class="primary">
-          <v-card-text>
-            <h5>Beautifully Packed</h5>
-            <p>
-              Impress each guest by letting them arrive to <b>beautifully and carefully 
-                packed toiletries</b> &mdash; creating a clean &amp; warm welcome.
-            </p>
-          </v-card-text>
-        </v-card>
-      </v-flex>
-      <v-flex xs12 md4>
-        <v-card>
-          <v-card-text>
-            <h5>Delightfully Simple</h5>
-            <p>
-              <!-- We offer 2 crates. <b>Select the quantity of each
-              crate</b> and we'll deliver them to you or one of your
-              properties. -->
-              Simply select the quantity of crates you want us to ship.
-              You can also create an account to save shipping addresses for quicker checkouts
-            </p>
-          </v-card-text>
-        </v-card>
-      </v-flex>
-      <v-flex xs12 md4>
-        <v-card dark class="primary">
-          <v-card-text>
-            <h5>Earth Friendly</h5>
-            <p>
-              Our items are <b>biodegradable</b>, so that they
-              won't be a burden on the planet if they don't
-              end up in the recycle bin.
-            </p>
-          </v-card-text>
-        </v-card>
-      </v-flex>
-      </v-layout>
-    </v-container>
-    
+  soon
   </div>
 </template>
 
