@@ -16,13 +16,13 @@
             </v-card-text>
           </v-card>
 
+          <v-img src='http://images.traditionalhome.mdpcdn.com/sites/traditionalhome.com/files/slide/101982719.jpg'></v-img>
           <!-- <v-img src='http://images.traditionalhome.mdpcdn.com/sites/traditionalhome.com/files/slide/101982719.jpg'></v-img> -->
-          <!-- <v-img src='http://images.traditionalhome.mdpcdn.com/sites/traditionalhome.com/files/slide/101982719.jpg'></v-img> -->
-          <hooper>
+          <!-- <hooper>
             <slide>
               <img width='100%' height='100%' src="http://images.traditionalhome.mdpcdn.com/sites/traditionalhome.com/files/slide/101982719.jpg" alt="">
               <!-- <v-img src='http://images.traditionalhome.mdpcdn.com/sites/traditionalhome.com/files/slide/101982719.jpg'></v-img> -->
-            </slide>
+           <!--
             <slide>                        
               <v-img src='/img/products/filtered/img_1563.jpeg'></v-img> 
             </slide>
@@ -36,7 +36,7 @@
               <v-img src='/img/products/filtered/img_1588.jpeg'></v-img> 
             </slide>
             <hooper-navigation slot="hooper-addons"></hooper-navigation>
-          </hooper>         
+          </hooper>          -->
           
     
           <v-card-text>
