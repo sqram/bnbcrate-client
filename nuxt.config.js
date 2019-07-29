@@ -131,8 +131,8 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    transpile: ['vuetify/lib'],
-    plugins: [new VuetifyLoaderPlugin()],
+    
+    
     loaders: {
       stylus: {
         import: ['~assets/style/variables.styl']
