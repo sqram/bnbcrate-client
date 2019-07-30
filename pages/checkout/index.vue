@@ -317,12 +317,12 @@ export default {
   data ()
   {
     return {
-      jwt: null,
-
+      //jwt: null,
+      isLoggedin: false,
       //email: this.$store.state.user.email || this.$store.state.checkout.email || '',
       addresses: [],
       cards: [],
-
+      
       // If user checks checkbox to save address in list (logged in only)
       saveAddress: false,
       isSubmitting: false,
@@ -408,11 +408,12 @@ export default {
       //return
       //return this.$router.replace('/')     
     }
-     this.jwt = newValue.user.jwt
-     console.log('~~~~ setting new jwt ~~~~~~~')
-
-     // If 
-     if (this.jwt) {
+    
+     if(newValue.user.jwt) {
+       this.isLoggedin = true
+     }
+        
+     if (this.isLoggedin) {
        console.log('------ logged in')
       // Addresses
       let req = await this.$axios({
@@ -460,13 +461,14 @@ export default {
      }
 
       // User not logged in, or is logged in but no CC on file
-      if (!this.jwt || (this.jwt && !this.cards.length))
+      if (!this.isLoggedin || (this.isLoggedin && !this.cards.length))
       {
         this.toggleCardFormStyle('block')
       }
       else if (this.jwt && this.cards.length)
       {      
         this.toggleCardFormStyle('none')
+        this.email = this.$store.state.user.email
       }
       
    })
@@ -550,16 +552,7 @@ export default {
   
 
   computed: {
-    ...mapState({
-     jwt: {
-        get () {
-          jwt: state => state.user.jwt
-        },
-        set (v) {        
-          this.jwt = v
-        }
-      },      
-    }),    
+
     email:
     {
       get ()
@@ -710,7 +703,7 @@ export default {
      * 
      * @param {String} stepNumber - number of the step we're editing ('one', 'two', etc)
      */
-    editStep(stepNumber)
+    editStep (stepNumber)
     {      
       this.steps[stepNumber].mode = 'active-step'
     },
@@ -721,7 +714,7 @@ export default {
      * @param {String} formNumber - number of form ref that called this
      * @param {String} stepNumber - number of step to go to
      */    
-    goToNextStep(formNumber, stepNumber)
+    goToNextStep (formNumber, stepNumber)
     {
       // Because form-two is inside a v-if,
       // it won't get checked for validation, and
@@ -758,7 +751,7 @@ export default {
      * @param {String} which - which pay button called this. 
      *   'select' or 'form'
      */
-    async handleCreditCardSubmit(which)
+    async handleCreditCardSubmit (which)
     {
 
       
