@@ -2,10 +2,10 @@
 
 # Builds initiated from any branch commit (except Master)
 [context.staging]  
-  command = "npm run generate"    
-  API_URL = 'https://us-central1-bnbcrate-dev.cloudfunctions.net/'
+  command = "npm run generate:staging"      
 
 # Env variables for above
 [context.branch-deploy.environment]
   BUILD_SOURCE = 'netlify'
   NODE_ENV = "development"
+  API_URL = 'https://us-central1-bnbcrate-dev.cloudfunctions.net/'
