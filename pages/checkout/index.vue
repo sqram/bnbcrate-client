@@ -479,7 +479,8 @@ export default {
 
   async mounted()
   {    
-    
+    console.log('Stripe....')
+    console.log(process.env.STRIPE_PUBLIC_KEY)
     // Stripe element styling    
     window.stripe = window.Stripe(process.env.STRIPE_PUBLIC_KEY);
     var elements = stripe.elements();    
