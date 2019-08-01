@@ -160,11 +160,11 @@
                         return-object>
                       </v-select>
 
-                      <v-alert color="error" icon="warning" value="true" v-if='selectedCardError'>
+                      <v-alert color="error" icon="warning"  v-if='selectedCardError'>
                         {{ selectedCardError }}
                       </v-alert>
 
-                      <v-alert color="error" icon="warning" value="true" v-if='ccSubmitError'>
+                      <v-alert color="error" icon="warning" v-if='ccSubmitError'>
                         {{ ccSubmitError }}
                       </v-alert>                            
 
@@ -231,7 +231,7 @@
                           </v-text-field>                                
                         </v-card-text>
 
-                        <v-alert color="error" icon="warning" value="true" v-if='ccSubmitError'>
+                        <v-alert color="error" icon="warning"  v-if='ccSubmitError'>
                           {{ ccSubmitError }}
                         </v-alert>
 
@@ -479,7 +479,8 @@ export default {
 
   async mounted()
   {    
-    
+    console.log('Stripe....')
+    console.log(process.env.STRIPE_PUBLIC_KEY)
     // Stripe element styling    
     window.stripe = window.Stripe(process.env.STRIPE_PUBLIC_KEY);
     var elements = stripe.elements();    
