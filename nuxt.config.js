@@ -3,7 +3,6 @@ const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 
 var envfile
   , apiUrl
-  , apiHeaders
 
 
 // Define variables based on environment
@@ -20,7 +19,6 @@ else
   // this env file still used for dev
   envfile = '.env.dev'
   apiUrl = 'http://localhost:8080/'
-  //apiUrl = 'https://us-central1-bnbcrate-dev.cloudfunctions.net/app/'
   apiHeaders = { 'X-environment' : 'development' }
 }
 
@@ -34,7 +32,6 @@ if (process.env.BUILD_SOURCE == 'netlify')
 require('dotenv').config({ path: envfile }); 
 
 console.log('----------------------')
-//console.log(process.env.NODE_ENV)
 console.log(process.env.NODE_ENV )
 
 
@@ -43,10 +40,9 @@ console.log(process.env.NODE_ENV )
 
 module.exports = {
   // Allows us to use .env variables in the client
-  // Use stripe dev, if undefined (means prod build, use live version
+  // process.env.STRIPE_PUBLIC_KEY will be set by the .env.dev file when in dev
   env: {
-    STRIPE_PUBLIC_KEY: (process.env.NODE_ENV  === 'development') ? 
-      'pk_test_0CoPbVlrcNnupYEd1fSRlrWU' : 'pk_live_caRggoikgPngiPfPqRzdGgta',
+    STRIPE_PUBLIC_KEY: process.env.STRIPE_PUBLIC_KEY || 'pk_live_caRggoikgPngiPfPqRzdGgta',
     NODE_ENV: (process.env.NODE_ENV  === 'development') ? 'development' : 'production'
   },
 
