@@ -1,7 +1,7 @@
 # https://www.netlify.com/docs/netlify-toml-reference/
 
 # Builds initiated from any branch commit (except Master)
-[context.branch-deploy]
+[context.staging]  
   command = "npm run generate"    
   API_URL = 'https://us-central1-bnbcrate-dev.cloudfunctions.net/'
 
