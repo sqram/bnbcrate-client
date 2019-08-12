@@ -98,6 +98,9 @@ module.exports = {
   */
   modules: [    
     '@nuxtjs/axios',
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-76274804-5'
+    }]
     //['@nuxtjs/vuetify', { treeShake: false }]
   ],
 
