@@ -97,12 +97,20 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [    
-    '@nuxtjs/axios',
-    ['@nuxtjs/google-analytics', {
-      id: 'UA-76274804-5'
-    }]
+    '@nuxtjs/axios',    
     //['@nuxtjs/vuetify', { treeShake: false }]
   ],
+
+  buildModules: [
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-76274804-7'
+    }]
+  ],
+  // To see google analyitcs in dev mode:
+  debug: {
+    enabled: true,
+    sendHitTask: true
+  },
 
   devModules: [
     '@nuxtjs/vuetify'

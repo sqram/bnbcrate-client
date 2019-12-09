@@ -49,13 +49,7 @@
                     </v-card-text>                 
                   </v-flex>
                   </v-layout>
-                  <v-layout class="crate-selection">
-
-                  
-                  
-
-                  
-                
+                  <v-layout class="crate-selection">                
                 </v-layout>                            
                 </v-card>
               </v-flex>
@@ -64,8 +58,7 @@
             </v-layout>
           </v-container>
         </v-flex>
-        
-        
+               
 
         <!-- Right side -->
         <v-flex xs12 sm4  md4 lg4>
@@ -74,8 +67,7 @@
               <div class="order-summary">           
                 <div class="price">
                   <span class="currency">$</span>{{ $store.getters['cart/cartTotal'] }}                  
-                </div>               
-
+                </div>              
                   <v-card-text>
                      <v-btn 
                       color='primary'  
@@ -90,8 +82,7 @@
                  
                  <v-card light flat class="text-sm-center grey--text">
                   ( Shipping is <b>FREE</b> )
-                </v-card>
-                 
+                </v-card>                 
               </div>
               
             
@@ -137,8 +128,13 @@ export default {
     }
   },
   async beforeMount ()
-  {    
-    this.$store.dispatch('products/getCrates')       
+  {              
+
+    // If we have 0 crates in cart, add `
+    if (this.$store.state.cart.items.length == 0) {
+      let crate = this.$store.state.products.crates[0]
+      this.$store.commit('cart/UPDATE_CART_ITEM', { name: 'Basic', quantity: 1})
+    }
   }  
 }
 </script>

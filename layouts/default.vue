@@ -17,6 +17,11 @@ export default {
     Dialog,
     Footer
   },  
+  mounted () {
+    console.log('so fresh and so clean, clean.')
+    // Fetch crates
+    this.$store.dispatch('products/getCrates')
+  }
 }
 </script>
 
