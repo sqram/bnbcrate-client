@@ -12,7 +12,7 @@
            <v-card-text>
              <div><b>Can I return crates?</b></div>
              <div>
-               Unfortunately, we don't accept returns. Especially since each crate
+               We currently do not accept returns. Especially since each crate
                may have a guest's name engraved on it.
              </div>
            </v-card-text>           
@@ -25,7 +25,7 @@
              <div><b>How long does shipping take?</b></div>
              <div>
                Crate(s) should arrive at the address provided between 3-5 days,
-               depends on the address
+               depends on the address.
              </div>
            </v-card-text>           
          </v-card>
@@ -36,8 +36,34 @@
            <v-card-text>
              <div><b>Can I order a crate with custom items?</b></div>
              <div>
-               At the moment, we are not offering this option &mdash; in the future, however,
+               At the moment we are not offering this option &mdash; in the future, however,
                we will allow for custom items and quantity per crate.
+             </div>
+           </v-card-text>           
+         </v-card>
+        </v-flex>
+
+        <v-flex>
+         <v-card>
+           <v-card-text>
+             <div><b>Are my transactions secure?</b></div>
+             <div>
+               Absolutely. Your credit card information never goes through our servers.
+               <br>
+               It is sent and processed by <a href="https://stripe.com/">Stripe.com</a> - a service
+               used by Kickstarter, Instacart, Shopify, Lyft, and others.
+             </div>
+           </v-card-text>           
+         </v-card>
+        </v-flex>
+
+        <v-flex>
+         <v-card>
+           <v-card-text>
+             <div><b>Do you ship outside the United Stated?</b></div>
+             <div>
+               At the moment we only ship to the United States, but will soon
+               ship to Europe and Asia.
              </div>
            </v-card-text>           
          </v-card>

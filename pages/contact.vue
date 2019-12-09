@@ -48,17 +48,15 @@
               SEND
             </v-btn>
         </v-flex>
+        <v-flex xs10 md8 offset-xs1 offset-md2>
+          <v-alert :type="xhr.status" :value="xhr.result != null">
+            {{ xhr.message }}
+          </v-alert>
+        </v-flex>
       </v-form>
 
-      <v-flex xs10 md8 offset-xs1 offset-md2>
-        <v-alert :type="xhr.status" :value="xhr.result != null">
-          {{ xhr.message }}
-        </v-alert>
-      </v-flex>
-       
       
-
-
+       
     </v-layout>
   </v-container>
 </template>
@@ -109,7 +107,7 @@
           
           var req = this.$axios({
             method: 'post',
-            url: `${window.api}/contact`,
+            url: `/contact`,
             data: { email: this.email, topic: this.select.id, msg: this.msg  }
           })
           .then(r => {
@@ -119,7 +117,6 @@
             this.xhr.status = r.data.result ? 'success' : 'error'                 
           })
           .catch(e => {
-
             this.isSubmitting = false                                     
             this.xhr.result = 0
             this.xhr.message = 'Unknown error'
