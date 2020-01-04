@@ -10,7 +10,7 @@
     "start": "nuxt start",
     "generate": "export NODE_ENV=production; nuxt generate",
     "generate:staging": "export NODE_ENV=development; nuxt generate",
-    "deploy-client-dev": "npm run generate && gcloud config set project bnbcrate-dev && gsutil  cp -r dist/* gs://bnbcrate-dev.appspot.com"
+    "deploy-client-dev": "npm run generate:staging && gcloud config set project bnbcrate-dev && gsutil  cp -r dist/* gs://bnbcrate-dev.appspot.com"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.5.3",
