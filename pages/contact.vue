@@ -88,7 +88,7 @@
         isSubmitting: false,
         isSubmitted: false,
         email: null,
-        select: {topic: 'Select a topic', id: -1},
+        select: { topic: 'Select a topic', id: -1 },
         msg: null,
         items: [
           { topic: 'Orders', id: 1 },
