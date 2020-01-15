@@ -130,16 +130,25 @@
             data: { email: this.email, topic: this.select.id, msg: this.msg  }
           })
           .then(r => {
-            this.isSubmitting = false                                     
+            this.isSubmitting = false                
+            console.log('-----r')                     
+            console.log(r)
             this.xhr.result = r.data.result
             this.xhr.message = r.data.payload.message
-            this.xhr.status = r.data.result ? 'success' : 'error'                 
+            this.xhr.status = r.data.result ? 'success' : 'error'          
+            if (r.data.result == 'success')        {
+              this.isSubmitted = true
+            }
           })
           .catch(e => {
             this.isSubmitting = false                                     
             this.xhr.result = 0
             this.xhr.message = 'Unknown error'
             this.xhr.status = 'error'
+          })
+          .finally( () => {
+            this.isSubmitting = false
+            
           })
         }
       }
