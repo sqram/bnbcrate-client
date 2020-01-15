@@ -136,7 +136,7 @@
             this.xhr.result = r.data.result
             this.xhr.message = r.data.payload.message
             this.xhr.status = r.data.result ? 'success' : 'error'          
-            if (r.data.result == 'success')        {
+            if (r.data.result)        {
               this.isSubmitted = true
             }
           })
