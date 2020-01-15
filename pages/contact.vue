@@ -130,9 +130,7 @@
             data: { email: this.email, topic: this.select.id, msg: this.msg  }
           })
           .then(r => {
-            this.isSubmitting = false                
-            console.log('-----r')                     
-            console.log(r)
+            this.isSubmitting = false                            
             this.xhr.result = r.data.result
             this.xhr.message = r.data.payload.message
             this.xhr.status = r.data.result ? 'success' : 'error'          
@@ -158,7 +156,6 @@
 
 <style lang='stylus' scoped>   
   .sent
-    border 1px dashed #ccc
     padding 1em 0
   h1
     text-align center
