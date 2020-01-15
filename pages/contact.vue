@@ -107,7 +107,7 @@
         rules: {
           email: {
             //required: v => !!v || 'Required.',
-            regex: v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+            regex: v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid.'
           },
           msg: {
             len: v => /.{20,}/i.test(v) || "Message must be over 20 characters"           
