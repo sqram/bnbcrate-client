@@ -36,5 +36,8 @@ export default {
   header:not(.v-sheet)
     text-align center
     margin 2em 0 3em 0
+    p:first-of-type
+      padding-top 15px
+      color lighten(#333, 20%)
 
 </style>

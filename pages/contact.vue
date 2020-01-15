@@ -1,11 +1,13 @@
 <template>
   <v-container grid-list-md>
+    
+     <header>
+        <h3 class="display-1">Contact Us</h3>  
+        <p>We can also be reached via <a href="https://www.facebook.com/bnbcrate/">Facebook!</a></p>        
+      </header> 
 
-    <header>
-      <h3 class="display-1">Contact Us</h3>        
-    </header> 
+    <v-layout column wrap v-if='!isSubmitted'>
 
-    <v-layout column wrap>
       <v-form :hidden='xhr.result == 1' ref='contactform'>        
         <v-flex xs10 md8 offset-xs1 offset-md2>
           <v-text-field
@@ -58,6 +60,23 @@
       
        
     </v-layout>
+
+    <!-- Form has been submitted -->
+    <v-layout column wrap v-else>
+      <v-flex xs10 md6>
+        <v-card>
+          <v-card-text>
+            <div class="sent">
+              <h1 center>Thank you</h1>
+              <p>
+                Your email has been sent. We will reply shortly to <b>{{ email }}</b>.
+              </p>
+            </div>
+          </v-card-text>
+        </v-card>
+      </v-flex>
+    </v-layout>
+
   </v-container>
 </template>
 
@@ -111,16 +130,25 @@
             data: { email: this.email, topic: this.select.id, msg: this.msg  }
           })
           .then(r => {
-            this.isSubmitting = false                                     
+            this.isSubmitting = false                
+            console.log('-----r')                     
+            console.log(r)
             this.xhr.result = r.data.result
             this.xhr.message = r.data.payload.message
-            this.xhr.status = r.data.result ? 'success' : 'error'                 
+            this.xhr.status = r.data.result ? 'success' : 'error'          
+            if (r.data.result)        {
+              this.isSubmitted = true
+            }
           })
           .catch(e => {
             this.isSubmitting = false                                     
             this.xhr.result = 0
             this.xhr.message = 'Unknown error'
             this.xhr.status = 'error'
+          })
+          .finally( () => {
+            this.isSubmitting = false
+            
           })
         }
       }
@@ -129,8 +157,16 @@
 </script>
 
 <style lang='stylus' scoped>   
+  .sent
+    border 1px dashed #ccc
+    padding 1em 0
+  h1
+    text-align center
+    margin-bottom 1em
   p
     text-align center
     font-size 110%
+    padding 0
+    margin 0
 </style>
 
