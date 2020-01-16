@@ -88,7 +88,7 @@
         isSubmitting: false,
         isSubmitted: false,
         email: null,
-        select: {topic: 'Select a topic', id: -1},
+        select: { topic: 'Select a topic', id: -1 },
         msg: null,
         items: [
           { topic: 'Orders', id: 1 },
@@ -107,7 +107,7 @@
         rules: {
           email: {
             //required: v => !!v || 'Required.',
-            regex: v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+            regex: v => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid.'
           },
           msg: {
             len: v => /.{20,}/i.test(v) || "Message must be over 20 characters"           
@@ -130,9 +130,7 @@
             data: { email: this.email, topic: this.select.id, msg: this.msg  }
           })
           .then(r => {
-            this.isSubmitting = false                
-            console.log('-----r')                     
-            console.log(r)
+            this.isSubmitting = false                            
             this.xhr.result = r.data.result
             this.xhr.message = r.data.payload.message
             this.xhr.status = r.data.result ? 'success' : 'error'          
@@ -158,7 +156,6 @@
 
 <style lang='stylus' scoped>   
   .sent
-    border 1px dashed #ccc
     padding 1em 0
   h1
     text-align center
