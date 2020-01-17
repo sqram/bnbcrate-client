@@ -42,14 +42,8 @@
 </template>
 
 <script>
-  import Axios from 'axios'
-  import { isEmail, isLength } from 'validator'
   
-  // const axios = new Axios({
-  //   baseURL: 'https://some-domain.com/api/',
-  //   timeout: 1000,
-  //   headers: {'X-Custom-Header': 'foobar'}
-  // })
+  import { isEmail, isLength } from 'validator'
 
   export default {
     data()
@@ -99,7 +93,6 @@
           console.log(response)
           if (response.result)
           {
-            console.log('---- ayyyy')
             this.$store.commit('dialogs/TOGGLE_DIALOG', {
               dialogKey: 'auth',
               show: false

@@ -13,8 +13,8 @@
         <h3 class="display-1">Credit Cards</h3>        
         <p>
           Having credit cards saved allows you<br>
-          to select them during checkout
-          for a speedier process.
+          to select them during payment
+          for a speedier checkout process.
         </p>
         
         <div style="text-align:center">
@@ -32,9 +32,9 @@
         <loading loading-text='Fetching credit cards...' />
       </div>
       -->
-      <div>
+      <v-card-text>
          <!-- New Credit Card Form -->
-      <div style="visibility: hidden" id="newCreditCardForm">
+      <v-card-text style="visibility: hidden" id="newCreditCardForm">
         <!-- <a class="close-form" @click.prevent='toggleNewCreditCardForm'>x</a> -->
         <v-layout row wrap>
           <!-- Payment -->
@@ -42,24 +42,31 @@
             <v-card-text>
               <label>
                 <div>Credit card number</div>
+              </label>           
                 <div id='cardNumber-mount'></div>
                 <div class="input-error" v-if='ccNumberError'>{{ccNumberError}}</div>
                 <span class="icon"><i class="material-icons">credit_card</i></span>
-              </label>              
+                 
             </v-card-text>
           </v-flex>
           <v-flex d-flex xs6>
             <v-card-text>
-              <div>Expiration</div>
-              <div id='cardExpiry-mount'></div>  
-              <div class="input-error" v-if="ccExpiryError">{{ccExpiryError}}</div>
+              <label>
+                <div>Expiration</div>
+              </label>
+                <div id='cardExpiry-mount'></div>  
+                <div class="input-error" v-if="ccExpiryError">{{ccExpiryError}}</div>
+              
             </v-card-text>
           </v-flex>
           <v-flex d-flex xs6>
             <v-card-text>
-              <div>Security Code</div>
-              <div id='cardCvc-mount'></div>
-              <div class="input-error" v-if='ccCvcError'>{{ccCvcError}}</div>
+              <label>
+                <div>Security Code</div>
+              </label>
+                <div id='cardCvc-mount'></div>
+                <div class="input-error" v-if='ccCvcError'>{{ccCvcError}}</div>
+              
             </v-card-text>                
           </v-flex>
         </v-layout>
@@ -89,13 +96,14 @@
           </v-flex>
         </v-layout>
 
-        <v-card text>
+        <v-card text flat>
           <v-card-text>
             <b>Note:</b><i> You may see a $1 pending charge on your bank statement as part of the card authorization process. This is a <b>temporary authorization
               </b> charge to ensure the card is valid, and <b>it will disappear from your statement</b>.</i>
           </v-card-text>         
         </v-card>
-      </div>   
+      </v-card-text>   
+
         <v-card text class="no-address" v-if='Array.isArray(creditCards) && !creditCards.length'>
           You have no cards saved.
         </v-card>
@@ -122,7 +130,7 @@
         </v-layout>  
         </v-container>
         
-      </div>
+      </v-card-text>
 
      
         
@@ -354,6 +362,12 @@ export default {
 </script>
 
 <style lang='stylus' scoped> 
+  label
+    
+    color #444
+    padding-bottom 5px
+    display block
+    
   i
     color #666
   .input-error
@@ -408,5 +422,6 @@ export default {
     padding 10px!important
   .card__text label
     position relative
+
   
 </style>
