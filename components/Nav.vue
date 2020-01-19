@@ -15,7 +15,7 @@
       
       <v-list dark>
         <!-- Login -->
-        <v-list-item v-if='!$store.state.user.jwt' link>
+        <v-list-item v-if='!$store.state.user.jwt' link  @click.native.stop="showDialog('login');">
           <v-list-item-icon>
             <v-icon>person</v-icon>
           </v-list-item-icon>
@@ -23,7 +23,7 @@
         </v-list-item>
 
         <!-- Register -->
-        <v-list-item v-if='!$store.state.user.jwt' link>
+        <v-list-item v-if='!$store.state.user.jwt' link @click.native.stop="showDialog('register')">
           <v-list-item-icon>
             <v-icon>person</v-icon>
           </v-list-item-icon>
@@ -31,7 +31,7 @@
         </v-list-item>         
 
         <!-- About -->
-        <v-list-item link>
+        <v-list-item link to='/about' @click.prevent="drawer = false">
           <v-list-item-icon>
             <v-icon>announcement</v-icon>
           </v-list-item-icon>
@@ -39,7 +39,7 @@
         </v-list-item>
 
         <!-- FAQs -->
-        <v-list-item link>
+        <v-list-item link to='/faq' @click.prevent="drawer = false">
           <v-list-item-icon>
             <v-icon>help_outline</v-icon>
           </v-list-item-icon>

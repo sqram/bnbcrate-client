@@ -2,7 +2,7 @@
   <div class="index">
     
   
-    <v-layout  align-center class="hero">       
+    <v-layout  align-center class="hero" :style="{backgroundImage: `url(/img/hero/${backgrounds[bgIndex]}.jpg)` }">       
       <v-flex xs10 sm5 md7 lg5 align-self-center>
         <v-card flat tile class="transparent">
           <v-layout column class="header">
@@ -72,7 +72,34 @@
     
   </div>
 </template>
-
+<script>
+export default {
+  
+  data () {
+    return {
+      backgrounds: [
+        'bathroom3',
+        'product2',
+        //'product',
+        'bathroom1',
+        'product3'
+      ],
+      bgIndex: 0
+    }
+  },
+  mounted () {
+    setInterval(changeHero.bind(this), 6000)   
+    function changeHero () {      
+      if (this.backgrounds[this.bgIndex + 1] == undefined) {
+        this.bgIndex = 0
+      } else {
+        this.bgIndex +=1
+      }
+      this.currentBg = this.backgrounds[index]
+    }
+  }
+}
+</script>
 <style lang='stylus'>  
 
   // http://rexadesign.it/it/collections
@@ -90,8 +117,10 @@
       //background url(https://i.ytimg.com/vi/MTJWAOnGtO8/maxresdefault.jpg)
       //background url(http://img.archiexpo.com/images_ae/photo-g/66916-11562379.jpg)
       background url('/img/hero/bathroom3.jpg')
-      
-      
+      background url('/img/hero/bathroom1.jpg')
+      background url('/img/hero/product2.jpg')
+      background url('/img/hero/product3.jpg')
+      transition background-image 1.8s ease
       background-size 100% 150%
       padding auto 1em
     
