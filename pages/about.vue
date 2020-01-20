@@ -16,7 +16,7 @@
             </v-card-text>
           </v-card>
 
-          <v-img src='http://images.traditionalhome.mdpcdn.com/sites/traditionalhome.com/files/slide/101982719.jpg'></v-img>
+          <v-img src='/img/hero/bathroom7.jpg'></v-img>
           <!-- <v-img src='http://images.traditionalhome.mdpcdn.com/sites/traditionalhome.com/files/slide/101982719.jpg'></v-img> -->
           <!-- <hooper>
             <slide>
