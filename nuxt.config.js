@@ -34,7 +34,7 @@ require('dotenv').config({ path: envfile });
 
 console.log('----------------------')
 console.log(process.env.NODE_ENV )
-console.log(`Build Source: `${process.env.BUILD_SOURCE}`)
+console.log(`Build Source: ${process.env.BUILD_SOURCE}`)
 
 
 
