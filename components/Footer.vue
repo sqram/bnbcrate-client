@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <div class="copyright">2019 bnbcrate, inc.</div>
+    <div class="copyright">2020 bnbcrate, LLC.</div>
     <div class="links">
       <v-btn to="/crates" text small color='primary'>Ship Crates</v-btn>
       <v-btn to="/about" text small color='primary'>About</v-btn>
