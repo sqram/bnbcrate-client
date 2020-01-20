@@ -189,8 +189,7 @@ export default {
       //transition background-image 1.8s ease
       //background-size 100% 150%
       padding auto 1em
-      
-    
+         
     
     .header
       margin 0 2em      
