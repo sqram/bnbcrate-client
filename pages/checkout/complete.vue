@@ -16,9 +16,14 @@
             <v-card-text>              
               <p>
                 An e-mail has been sent with an order confirmation. <br> 
-                A fresh crate is now being prepared, and will soon be shipped to address you provided.
+                A fresh crate is now being prepared, and will soon be shipped to the address you provided.
               </p>
               <h3>Your future guest thanks you!</h3>
+              <br><br>
+              <p>
+                <b>Note:</b> Sometimes gmail puts our emails in the <i>Promotions</i> tab.<br>
+                If you don't see an email from us soon, please check the promotions tab.
+              </p>
             </v-card-text>
           </v-card-text>          
         </v-card>
