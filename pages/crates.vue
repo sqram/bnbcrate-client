@@ -133,7 +133,7 @@ export default {
     // If we have 0 crates in cart, add `
     if (this.$store.state.cart.items.length == 0) {
       let crate = this.$store.state.products.crates[0]
-      this.$store.commit('cart/UPDATE_CART_ITEM', { name: 'Basic', quantity: 1})
+      this.$store.commit('cart/UPDATE_CART_ITEM', { name: crate.name, quantity: 1, id: crate.id})
     }
   }  
 }
