@@ -19,7 +19,7 @@ export default {
   },  
   async mounted () {
     // Fetch crates
-    await this.$store.dispatch('products/getCrates')
+    //await this.$store.dispatch('products/getCrates')
   }
 }
 </script>

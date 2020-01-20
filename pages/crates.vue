@@ -133,9 +133,10 @@ export default {
     // If we have 0 crates in cart, add `
     if (this.$store.state.cart.items.length == 0) {
       // TODL this is undefined, because getCrates in layout.vue, which calls store/products/getProducts isnt done
-      let crate = this.$store.state.products.crates[0] 
-      console.log(this.$store.state.products.crates)
-      this.$store.commit('cart/UPDATE_CART_ITEM', { name: 'Basic', quantity: 1, id: 1})
+      // TODO - have to make cart same object as products..but add `quantity` key
+      await this.$store.dispatch('products/getCrates')
+      let crate = this.$store.state.products.crates[0]     
+      this.$store.commit('cart/UPDATE_CART_ITEM', {...crate, quantity: 1})
     }
   }  
 }
