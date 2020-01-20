@@ -127,13 +127,15 @@ export default {
       }
     }
   },
-  async beforeMount ()
+  async mounted ()
   {              
 
     // If we have 0 crates in cart, add `
     if (this.$store.state.cart.items.length == 0) {
-      let crate = this.$store.state.products.crates[0]
-      this.$store.commit('cart/UPDATE_CART_ITEM', { name: 'Basic', quantity: 1})
+      // TODL this is undefined, because getCrates in layout.vue, which calls store/products/getProducts isnt done
+      let crate = this.$store.state.products.crates[0] 
+      console.log(this.$store.state.products.crates)
+      this.$store.commit('cart/UPDATE_CART_ITEM', { name: 'Basic', quantity: 1, id: 1})
     }
   }  
 }

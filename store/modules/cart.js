@@ -26,7 +26,7 @@ const mutations = {
    */
   
   UPDATE_CART_ITEM (state, obj) {
-    let item = state.items.filter(o => o.name == obj.name)[0] || null
+    let item = state.items.filter(o => o.name == obj.name)[0] || null    
     if (item) 
     {
       // Product exists in `items` (already in cart). Update the quantity      

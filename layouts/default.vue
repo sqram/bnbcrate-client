@@ -17,9 +17,9 @@ export default {
     Dialog,
     Footer
   },  
-  mounted () {
+  async mounted () {
     // Fetch crates
-    this.$store.dispatch('products/getCrates')
+    await this.$store.dispatch('products/getCrates')
   }
 }
 </script>

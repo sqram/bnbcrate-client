@@ -28,6 +28,7 @@ if (process.env.BUILD_SOURCE == 'netlify')
 {
   apiHeaders = { 'X-environment' : 'development' }
   apiUrl = 'https://us-central1-bnbcrate-dev.cloudfunctions.net/app/'
+  apiUrl = 'http://localhost:8080/'
 }
 
 require('dotenv').config({ path: envfile }); 
