@@ -145,7 +145,6 @@ export default {
         { src: 'bathroom3' },
         { src: 'product3' },
         { src: 'product2'  },
-        { src: 'bathroom6' },
         { src: 'bathroom1' },
         { src: 'product' },
         { src: 'bathroom5' },
@@ -195,6 +194,7 @@ export default {
       margin 0 2em      
       display flex
       flex-direction column
+      max-width 440px
       & > *
         margin-bottom 1em    
         
