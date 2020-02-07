@@ -19,11 +19,14 @@
             <v-layout row wrap>
               <v-flex d-flex xs12 v-for="crate in $store.state.products.crates" :key='crate.name'>
                 <v-card>                
-                  <v-layout row wrap>
-                    <v-flex xs12>
-                      <v-img src='/img/products/filtered/img_1563.jpeg'></v-img> 
-                    </v-flex>
-                  </v-layout>
+                    <v-carousel height="299px" hide-delimiters>
+                      <v-carousel-item
+                      v-for="(img, i) in basicImages" :key=i
+                      :src="img.src"
+                      >                       
+                      </v-carousel-item>
+                    </v-carousel>
+                  
 
                   <!-- count -->
                   <v-layout class="crate-selection">
@@ -122,9 +125,12 @@ export default {
   data ()
   {
     return {
-      hooperSettings: {
-        vertical: true
-      }
+      basicImages: [
+        { src: '/img/products/filtered/img_1563.jpeg '},
+        { src: '/img/hero/product2.jpg '},
+        { src: '/img/hero/product3.jpg '},
+        { src: '/img/hero/product.jpg '},
+      ]
     }
   },
   async mounted ()
